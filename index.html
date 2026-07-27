@@ -70,8 +70,14 @@
         }
         
         .textured-bg {
-            background-image: linear-gradient(rgba(251, 251, 250, 0.93), rgba(251, 251, 250, 0.93)), url('https://i.imgur.com/HokgcoD.jpg');
+            background-image: 
+                linear-gradient(rgba(251, 251, 250, 0.72), rgba(251, 251, 250, 0.72)), 
+                url('https://i.imgur.com/HokgcoD.jpg'),
+                url('https://i.imgur.com/HokgcoD.jpg');
             background-repeat: repeat;
+            background-position: center, top left, bottom right;
+            background-size: 100%, 250px, 600px;
+            background-blend-mode: normal, overlay, normal;
         }
 
         .hero-horizontal-focus {
@@ -172,11 +178,13 @@
             </div>
         </section>
 
-        <section id="countdown-section" class="relative py-16 px-6 text-center border-y border-neutralSand/20 bg-cover bg-center overflow-hidden reveal" style="background-image: url('https://i.imgur.com/r3p1Cr7.jpg');">
-            <div class="absolute inset-0 bg-neutralCream/85 backdrop-blur-[1px]"></div>
+        <section id="countdown-section" class="relative py-16 px-6 text-center overflow-hidden reveal">
+            <div class="absolute inset-0 z-0 pointer-events-none" style="background-image: url('https://i.imgur.com/r3p1Cr7.jpg'); background-size: cover; background-position: center; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
+                <div class="absolute inset-0 bg-neutralCream/45 backdrop-blur-[2px]"></div>
+            </div>
             
             <div class="relative z-10">
-                <h3 class="font-serifTitle text-xs tracking-[0.25em] text-neutralSage uppercase mb-6 font-bold">Faltan Sólo</h3>
+                <h3 class="font-serifTitle text-xs tracking-[0.25em] text-neutralSage uppercase mb-6 font-bold drop-shadow-md">Faltan Sólo</h3>
                 
                 <div class="grid grid-cols-4 gap-2 max-w-xs mx-auto mb-4">
                     <div class="bg-neutralWhite/95 p-3 rounded-xl border border-neutralSand/40 shadow-sm backdrop-blur-sm">
@@ -197,16 +205,18 @@
                     </div>
                 </div>
 
-                <p id="wedding-date-display" class="font-serifTitle text-lg text-neutralDark tracking-wider mt-5 font-semibold">
+                <p id="wedding-date-display" class="font-serifTitle text-lg text-neutralDark tracking-wider mt-5 font-semibold drop-shadow-sm">
                     Sábado, 31 de Octubre de 2026
                 </p>
             </div>
         </section>
 
         <!-- Image Separator -->
-        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner reveal" style="background-image: url('https://i.imgur.com/RnTV7MN.jpg');"></div>
+        <div class="w-full reveal -mt-12 -mb-4 relative z-0 pointer-events-none">
+            <img src="https://i.imgur.com/QYluhgM.jpg" alt="Romance" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
+        </div>
 
-        <section class="py-16 px-8 text-center bg-transparent relative reveal">
+        <section class="py-16 px-8 text-center bg-transparent relative reveal z-10">
             <span class="text-neutralSage text-xl opacity-80"><i class="fa-solid fa-dove"></i></span>
             <h3 class="font-serifTitle text-xl text-neutralDark mt-2 mb-8 tracking-wider">Con la bendición de nuestros padres</h3>
 
@@ -241,9 +251,11 @@
         </section>
 
         <!-- Image Separator -->
-        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner reveal" style="background-image: url('https://i.imgur.com/4NAhDmT.jpg');"></div>
+        <div class="w-full reveal -my-4 relative z-0 pointer-events-none">
+            <img src="https://i.imgur.com/4NAhDmT.jpg" alt="Separador" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
+        </div>
 
-        <section class="py-16 px-6 bg-transparent text-center relative overflow-hidden reveal">
+        <section class="py-16 px-6 bg-transparent text-center relative overflow-hidden reveal z-10">
             <span class="text-neutralSage text-2xl opacity-80"><i class="fa-solid fa-place-of-worship"></i></span>
             <h3 class="font-serifTitle text-2xl text-neutralDark mt-3 mb-6 tracking-wide">La Celebración</h3>
 
@@ -301,9 +313,11 @@
         </section>
 
         <!-- Image Separator -->
-        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner reveal" style="background-image: url('https://i.imgur.com/3Gr48G6.jpg');"></div>
+        <div class="w-full reveal -my-4 relative z-0 pointer-events-none">
+            <img src="https://i.imgur.com/3Gr48G6.jpg" alt="Separador" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
+        </div>
 
-        <section class="py-16 px-8 bg-transparent relative reveal">
+        <section class="py-16 px-8 bg-transparent relative reveal z-10">
             <div class="text-center mb-12">
                 <span class="text-neutralRose text-xl opacity-80"><i class="fa-solid fa-clock"></i></span>
                 <h3 class="font-serifTitle text-2xl text-neutralDark mt-2 tracking-wide">Itinerario de Celebración</h3>
@@ -323,9 +337,11 @@
         </section>
 
         <!-- Image Separator -->
-        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner reveal" style="background-image: url('https://i.imgur.com/Bel7cOH.jpg');"></div>
+        <div class="w-full reveal -my-4 relative z-0 pointer-events-none">
+            <img src="https://i.imgur.com/Bel7cOH.jpg" alt="Separador" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
+        </div>
 
-        <section class="py-16 px-6 bg-transparent text-center relative reveal">
+        <section class="py-16 px-6 bg-transparent text-center relative reveal z-10">
             <span class="text-neutralSage text-2xl opacity-80"><i class="fa-solid fa-user-tie"></i></span>
             <h3 class="font-serifTitle text-2xl text-neutralDark mt-3 mb-6 tracking-wide">Código de Vestimenta</h3>
 
@@ -383,9 +399,11 @@
         </section>
 
         <!-- Image Separator -->
-        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner reveal" style="background-image: url('https://i.imgur.com/c1aYtCt.jpg');"></div>
+        <div class="w-full reveal -my-4 relative z-0 pointer-events-none">
+            <img src="https://i.imgur.com/c1aYtCt.jpg" alt="Separador" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
+        </div>
 
-        <section class="py-16 px-6 bg-transparent text-center relative border-t border-neutralSand/20 reveal">
+        <section class="py-16 px-6 bg-transparent text-center relative border-t border-neutralSand/20 reveal z-10">
             <span class="text-neutralRose text-2xl opacity-80"><i class="fa-solid fa-envelope-open-text"></i></span>
             <h3 class="font-serifTitle text-2xl text-neutralDark mt-3 mb-2 tracking-wide">Confirmación de Asistencia</h3>
             
@@ -579,16 +597,15 @@
             galleryImages: [
                 "https://i.imgur.com/67QqQ7a.jpg",
                 "https://i.imgur.com/0RZqLg2.jpg",
-                "https://i.imgur.com/s3gulEk.jpg",
+                "https://i.imgur.com/kFlLJtK.jpg",
                 "https://i.imgur.com/7fjofjo.jpg",
                 "https://i.imgur.com/SjeqHSd.jpg",
                 "https://i.imgur.com/ZX8twtw.jpg",
                 "https://i.imgur.com/YPRpAJg.jpg",
                 "https://i.imgur.com/ioqcLqJ.jpg",
-                "https://i.imgur.com/u3mTeaO.jpg",
+                "https://i.imgur.com/GW3trAY.jpg",
                 "https://i.imgur.com/98sQTie.jpg",
                 "https://i.imgur.com/xs2heaC.jpg",
-                "https://i.imgur.com/1pe0oj2.jpg",
                 "https://i.imgur.com/xMqPqPV.jpg",
                 "https://i.imgur.com/LR1q66t.jpg"
             ]
