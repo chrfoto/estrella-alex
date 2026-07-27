@@ -18,12 +18,12 @@
             theme: {
                 extend: {
                     colors: {
-                        neutralWhite: '#FDFBF7', // Very warm white
-                        neutralCream: '#F4EFE6', // Light beige/cream
-                        neutralRose: '#D9B3A0', // Warm blush/rose
-                        neutralSand: '#C8A97E', // Warm gold/sand
-                        neutralSage: '#8B5A5A', // Deep burgundy/rosewood (Replacing Sage for the theme)
-                        neutralDark: '#2C2A29'  // Warm dark charcoal
+                        neutralWhite: '#FBFBFA',
+                        neutralCream: '#EDE8E1',
+                        neutralRose: '#D9B3A8', // Warm Rose
+                        neutralSand: '#C9A687', // Warm Gold/Sand
+                        neutralSage: '#6E3A41', // Deep Burgundy (Acento)
+                        neutralDark: '#3A3635' // Charcoal
                     },
                     fontFamily: {
                         serifTitle: ['Cinzel', 'serif'],
@@ -35,60 +35,31 @@
         }
     </script>
     <style>
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-        /* Custom scrollbar matching new primary color */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #F4EFE6;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #8B5A5A;
-            border-radius: 3px;
-        }
-        /* Elegant Animations */
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #EDE8E1; }
+        ::-webkit-scrollbar-thumb { background: #6E3A41; border-radius: 3px; }
+        
         .fade-in-up {
             animation: fadeInUp 1.2s ease-out forwards;
         }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        /* Leaf falling effect in background */
+        
         .leaf {
-            position: absolute;
-            pointer-events: none;
-            opacity: 0.15;
+            position: absolute; pointer-events: none; opacity: 0.15;
             animation: fall 12s linear infinite;
         }
         @keyframes fall {
-            0% {
-                transform: translateY(-5vh) rotate(0deg);
-                left: calc(10% + 80% * var(--random-x));
-            }
-            100% {
-                transform: translateY(105vh) rotate(360deg);
-                left: calc(5% + 90% * var(--random-x));
-            }
+            0% { transform: translateY(-5vh) rotate(0deg); left: calc(10% + 80% * var(--random-x)); }
+            100% { transform: translateY(105vh) rotate(360deg); left: calc(5% + 90% * var(--random-x)); }
         }
-        /* Pulsing audio wave */
+        
         .audio-wave span {
-            display: inline-block;
-            width: 3px;
-            height: 15px;
-            background-color: #8B5A5A;
-            margin: 0 1px;
-            animation: bounce 1s ease-in-out infinite alternate;
+            display: inline-block; width: 3px; height: 15px; background-color: #6E3A41;
+            margin: 0 1px; animation: bounce 1s ease-in-out infinite alternate;
         }
         .audio-wave span:nth-child(2) { animation-delay: 0.2s; }
         .audio-wave span:nth-child(3) { animation-delay: 0.4s; }
@@ -97,44 +68,31 @@
             0% { transform: scaleY(0.3); }
             100% { transform: scaleY(1.5); }
         }
-        /* Custom Premium Texture Background from Imgur */
+        
         .textured-bg {
-            background-image: linear-gradient(rgba(253, 251, 247, 0.85), rgba(253, 251, 247, 0.85)), url('https://i.imgur.com/HokgcoD.jpg');
+            background-image: linear-gradient(rgba(251, 251, 250, 0.93), rgba(251, 251, 250, 0.93)), url('https://i.imgur.com/HokgcoD.jpg');
             background-repeat: repeat;
-            background-size: 400px;
         }
-        /* Utility for horizontal focus on hero */
+
         .hero-horizontal-focus {
-            background-size: cover;
             background-position: center 30%;
-        }
-        @media (min-width: 768px) {
-            .hero-horizontal-focus {
-                 background-attachment: fixed;
-            }
         }
     </style>
 </head>
-
 <body class="bg-neutralCream text-neutralDark font-sans relative overflow-x-hidden min-h-screen">
 
-    <!-- Ambient falling leaves -->
     <div id="leaves-container" class="fixed inset-0 pointer-events-none z-10 overflow-hidden"></div>
 
-    <!-- AUDIO PLAYER ELEMENT WITH STREAMABLE DROPBOX MP3 -->
     <audio id="bg-music" loop preload="auto">
         <source src="" id="audio-source" type="audio/mpeg">
     </audio>
 
-    <!-- 1. ENVELOPE / SCREEN SAVER SPLASH (OPENING CRUTCH) -->
-    <div id="envelope-screen" class="fixed inset-0 z-50 bg-neutralCream flex flex-col justify-center items-center px-6 transition-all duration-1000 ease-in-out">
-        <!-- Delicate Frame -->
+    <div id="envelope-screen" class="fixed inset-0 z-[70] bg-neutralCream flex flex-col justify-center items-center px-6 transition-all duration-1000 ease-in-out">
         <div class="border border-neutralSand/60 p-8 max-w-md w-full text-center bg-neutralWhite rounded-2xl shadow-xl flex flex-col justify-center items-center relative overflow-hidden">
-            <!-- Watercolor foliage decorations (Inline SVG) -->
-            <div class="absolute -top-6 -right-6 text-neutralSage/20 w-32 h-32">
+            <div class="absolute -top-6 -right-6 text-neutralSand/20 w-32 h-32">
                 <svg viewBox="0 0 100 100" class="fill-current"><path d="M50,0 C65,20 80,30 100,50 C80,60 60,60 50,100 C40,60 20,60 0,50 C20,30 35,20 50,0 Z"></path></svg>
             </div>
-            <div class="absolute -bottom-6 -left-6 text-neutralSage/20 w-32 h-32 transform rotate-180">
+            <div class="absolute -bottom-6 -left-6 text-neutralSand/20 w-32 h-32 transform rotate-180">
                 <svg viewBox="0 0 100 100" class="fill-current"><path d="M50,0 C65,20 80,30 100,50 C80,60 60,60 50,100 C40,60 20,60 0,50 C20,30 35,20 50,0 Z"></path></svg>
             </div>
 
@@ -143,7 +101,7 @@
             <div class="w-16 h-[1px] bg-neutralRose my-4"></div>
             
             <p class="font-serifBody text-xl italic text-neutralDark/80 mb-8 px-4">
-                "El amor es paciente, es bondadoso..."
+                "Con la bendición de Dios y el amor que nos une..."
             </p>
             
             <button onclick="openInvitation()" class="group relative px-8 py-3 overflow-hidden rounded-full bg-neutralSage text-white font-medium text-sm tracking-widest uppercase transition-all duration-300 hover:shadow-lg hover:bg-neutralDark transform hover:-translate-y-1">
@@ -155,16 +113,13 @@
         </div>
     </div>
 
-    <!-- NOTIFICATION POPUP (Replaces Native Alert) -->
     <div id="toast" class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 bg-neutralDark text-neutralWhite px-6 py-3 rounded-full text-sm font-medium shadow-lg opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-2">
         <i class="fa-solid fa-circle-check text-neutralRose"></i>
         <span id="toast-message">Copiado al portapapeles</span>
     </div>
 
-    <!-- MAIN APP WRAPPER (Hidden until "Abrir" is clicked) -->
     <div id="main-content" class="opacity-0 transition-opacity duration-1000 max-w-lg mx-auto bg-neutralWhite min-h-screen shadow-2xl relative border-x border-neutralSand/30 pb-20 textured-bg">
         
-        <!-- Music Floating Control -->
         <div class="fixed bottom-4 right-4 z-40 flex items-center gap-2">
             <div id="audio-visualizer" class="audio-wave flex items-end h-6 px-2 bg-neutralWhite/90 rounded-full border border-neutralSand/40 hidden">
                 <span></span><span></span><span></span><span></span>
@@ -174,21 +129,19 @@
             </button>
         </div>
 
-        <!-- Admin Settings Gear -->
         <div id="admin-gear-container" class="fixed bottom-4 left-4 z-40 hidden">
             <button onclick="toggleSettingsModal()" class="w-10 h-10 rounded-full bg-neutralDark/20 hover:bg-neutralDark/40 backdrop-blur-sm flex items-center justify-center text-neutralDark shadow-md transition-all duration-300" title="Ajustes de la Invitación">
                 <i class="fa-solid fa-sliders text-sm"></i>
             </button>
         </div>
 
-        <!-- Fullscreen Hero Cover -->
-        <header class="relative w-full h-screen flex flex-col justify-between items-center text-center overflow-hidden z-20">
-            <div id="hero-img-bg" class="absolute inset-0 z-0 hero-horizontal-focus transition-transform duration-1000 scale-100" style="background-image: url('https://i.imgur.com/FjhC4vV.jpg');"></div>
-            <!-- Gradient overlays to frame the content -->
-            <div class="absolute inset-0 z-10 bg-gradient-to-b from-black/80 via-black/20 to-neutralWhite"></div>
-            <div class="absolute inset-x-0 bottom-0 h-48 z-10 bg-gradient-to-t from-neutralWhite to-transparent"></div>
+        <header class="relative w-full h-screen flex flex-col justify-between items-center text-center overflow-hidden z-20 reveal">
+            <div id="hero-img-bg" class="absolute inset-0 z-0 bg-cover hero-horizontal-focus transition-transform duration-1000 scale-100" style="background-image: url('https://i.imgur.com/FjhC4vV.jpg');"></div>
+            <div class="absolute inset-0 z-10 bg-gradient-to-b from-black/60 via-black/20 to-neutralWhite"></div>
 
-            <div class="relative z-20 pt-16 px-6 w-full">
+            <div class="relative z-20 pt-14 px-6 w-full">
+                <p class="font-sans text-[10px] tracking-[0.5em] uppercase text-neutralWhite font-semibold drop-shadow-md">¡Nuestra Boda!</p>
+                <div class="w-10 h-[1px] bg-neutralWhite/60 mx-auto mt-2 mb-4"></div>
                 
                 <h2 class="font-serifTitle text-4xl sm:text-5xl text-neutralWhite font-semibold leading-tight drop-shadow-lg">
                     Estrella & Alejandro
@@ -199,38 +152,28 @@
                     <span class="text-neutralRose text-xs font-serifTitle"><i class="fa-solid fa-heart drop-shadow-md"></i></span>
                     <div class="w-12 h-[1px] bg-neutralWhite/50"></div>
                 </div>
-                
-                <p class="font-serifBody text-lg sm:text-xl italic text-neutralWhite drop-shadow-md">
-                    Estrella <br>&amp; Alejandro
-                </p>
             </div>
 
             <div class="flex-grow"></div>
-            <div class="relative z-20 pb-16 flex flex-col items-center">
-                <p class="font-sans text-[9px] uppercase tracking-[0.3em] text-neutralDark/80 font-semibold mb-2 drop-shadow-sm">Desliza para ver la Invitación</p>
-                <div class="w-8 h-12 border-2 border-neutralDark/60 rounded-full p-1 flex justify-center bg-neutralWhite/30 backdrop-blur-sm">
+
+            <div class="relative z-20 pb-12 flex flex-col items-center">
+                <p class="font-sans text-[9px] uppercase tracking-[0.3em] text-neutralDark/80 font-semibold mb-2">Desliza para ver la Invitación</p>
+                <div class="w-8 h-12 border-2 border-neutralDark/60 rounded-full p-1 flex justify-center bg-neutralWhite/10 backdrop-blur-sm">
                     <div class="w-1.5 h-3 bg-neutralSage rounded-full animate-bounce"></div>
                 </div>
             </div>
         </header>
 
-        <!-- Image 2 without vertical gradients -->
-        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner" style="background-image: url('https://i.imgur.com/LFfULuL.jpg');">
-        </div>
-
-        <section class="py-12 px-6 text-center bg-transparent">
-            <div class="max-w-md mx-auto bg-neutralWhite/95 px-6 py-6 rounded-2xl border border-neutralSand/30 shadow-md relative backdrop-blur-sm">
-                <span class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-3 py-0.5 bg-neutralSage text-white text-[9px] tracking-widest uppercase font-semibold border border-neutralSand/40 rounded-full">Nuestra Inspiración</span>
+        <section class="py-12 px-6 text-center bg-transparent reveal">
+            <div class="max-w-md mx-auto bg-neutralWhite/95 px-6 py-6 rounded-2xl border border-neutralSand/30 shadow-md relative backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
                 <p class="font-serifBody italic text-xl text-neutralDark/90 pt-2 leading-relaxed">
-                    "El amor es paciente, es bondadoso. El amor no es envidioso, ni presumido ni orgulloso."
+                    "Con la bendición de Dios y el amor que nos une, hemos decidido caminar juntos para siempre. Nos encantaría que nos acompañaras en este día tan especial."
                 </p>
-                <p class="font-sans text-[10px] uppercase tracking-widest text-neutralSage mt-3 font-semibold">1 Corintios 13:4</p>
             </div>
         </section>
 
-        <section id="countdown-section" class="relative py-16 px-6 text-center border-y border-neutralSand/20 bg-cover bg-center overflow-hidden" style="background-image: url('https://i.imgur.com/LFfULuL.jpg');">
-            <!-- Warm overlay for countdown -->
-            <div class="absolute inset-0 bg-neutralCream/85 backdrop-blur-[2px]"></div>
+        <section id="countdown-section" class="relative py-16 px-6 text-center border-y border-neutralSand/20 bg-cover bg-center overflow-hidden reveal" style="background-image: url('https://i.imgur.com/LFfULuL.jpg');">
+            <div class="absolute inset-0 bg-neutralCream/85 backdrop-blur-[1px]"></div>
             
             <div class="relative z-10">
                 <h3 class="font-serifTitle text-xs tracking-[0.25em] text-neutralSage uppercase mb-6 font-bold">Faltan Sólo</h3>
@@ -260,174 +203,133 @@
             </div>
         </section>
 
-        <!-- Image 4 without vertical gradients -->
-        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner" style="background-image: url('https://i.imgur.com/4QDUYlZ.jpg');">
-        </div>
+        <!-- Image Separator -->
+        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner reveal" style="background-image: url('https://i.imgur.com/4QDUYlZ.jpg');"></div>
 
-        <section class="py-16 px-8 text-center bg-transparent relative">
+        <section class="py-16 px-8 text-center bg-transparent relative reveal">
             <span class="text-neutralSage text-xl opacity-80"><i class="fa-solid fa-dove"></i></span>
             <h3 class="font-serifTitle text-xl text-neutralDark mt-2 mb-8 tracking-wider">Con la bendición de nuestros padres</h3>
 
-            <div class="space-y-8 max-w-md mx-auto">
-                <div class="p-6 rounded-2xl bg-neutralWhite border border-neutralSand/30 shadow-sm backdrop-blur-sm">
+            <div class="space-y-6 max-w-md mx-auto">
+                <div class="p-6 rounded-2xl bg-neutralWhite border border-neutralSand/30 shadow-sm backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
                     <h4 class="font-sans text-[10px] uppercase tracking-[0.25em] text-neutralSage font-bold mb-3">Padres de la Novia</h4>
                     <p class="font-serifBody text-xl text-neutralDark font-medium leading-relaxed">
-                        Maria Rubio Villa<br>
+                        Hilda Guzmán Fierros<br>
                         <span class="text-neutralRose/80 text-sm italic">&amp;</span><br>
-                        Alfredo Guzman Cortés
+                        Fernando Barajas Cacho
                     </p>
                 </div>
 
-                <div class="p-6 rounded-2xl bg-neutralWhite border border-neutralSand/30 shadow-sm backdrop-blur-sm">
+                <div class="p-6 rounded-2xl bg-neutralWhite border border-neutralSand/30 shadow-sm backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
                     <h4 class="font-sans text-[10px] uppercase tracking-[0.25em] text-neutralSage font-bold mb-3">Padres del Novio</h4>
                     <p class="font-serifBody text-xl text-neutralDark font-medium leading-relaxed">
-                        Bertha Sabrina Martínez Hernandez<br>
+                        Mahelet Miriam Martínez Damián<br>
                         <span class="text-neutralRose/80 text-sm italic">&amp;</span><br>
-                        Antonio Barajas Echartea
+                        Jesús Martínez Victoria
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-neutralWhite border border-neutralSand/30 shadow-sm backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
+                    <h4 class="font-sans text-[10px] uppercase tracking-[0.25em] text-neutralSage font-bold mb-3">Padrinos de Velación</h4>
+                    <p class="font-serifBody text-xl text-neutralDark font-medium leading-relaxed">
+                        Maria Emelia Zamora Lopez<br>
+                        <span class="text-neutralRose/80 text-sm italic">&amp;</span><br>
+                        Carlos Heraclio Victoria Moreno
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Image 5 without vertical gradients -->
-        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner" style="background-image: url('https://i.imgur.com/4NAhDmT.jpg');">
-        </div>
+        <!-- Image Separator -->
+        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner reveal" style="background-image: url('https://i.imgur.com/4NAhDmT.jpg');"></div>
 
-        <section class="py-16 px-6 bg-transparent text-center relative overflow-hidden">
+        <section class="py-16 px-6 bg-transparent text-center relative overflow-hidden reveal">
             <span class="text-neutralSage text-2xl opacity-80"><i class="fa-solid fa-place-of-worship"></i></span>
             <h3 class="font-serifTitle text-2xl text-neutralDark mt-3 mb-6 tracking-wide">La Celebración</h3>
 
-            <!-- Dynamic Religious Ceremony Card -->
-            <div id="religious-ceremony-card" class="bg-neutralWhite rounded-3xl p-8 max-w-md mx-auto shadow-md border border-neutralSand/30 space-y-6 relative z-10 backdrop-blur-sm mb-8 hidden">
+            <div id="religious-ceremony-card" class="bg-neutralWhite rounded-3xl p-8 max-w-md mx-auto shadow-md border border-neutralSand/30 space-y-6 relative z-10 backdrop-blur-sm mb-8 transition-transform duration-300 hover:-translate-y-1">
                 <div class="absolute top-0 right-4 transform -translate-y-1/2 bg-neutralRose text-white text-[9px] font-sans font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">
                     Ceremonia Religiosa
                 </div>
                 <div>
-                    <h4 id="ceremony-venue-display" class="font-serifTitle text-xl text-neutralDark font-bold">Salón Camilas</h4>
+                    <h4 id="ceremony-venue-display" class="font-serifTitle text-xl text-neutralDark font-bold">Santuario de El Santo Niño de La Salud</h4>
                     <div class="w-12 h-[1px] bg-neutralRose mx-auto my-3"></div>
                     <p class="font-sans text-sm text-neutralDark/80 font-medium">
-                        Calz. Ventura Puente 1661<br>
-                        Morelia, Michoacán
+                        Av Acueducto 467, Lomas de Hidalgo<br>
+                        58240 Morelia, Mich.
                     </p>
                 </div>
 
                 <div class="bg-neutralCream/40 rounded-xl py-3 px-4 inline-block">
-                    <p id="ceremony-time-display" class="font-serifTitle text-lg text-neutralSage font-bold">17:30 Horas</p>
+                    <p id="ceremony-time-display" class="font-serifTitle text-lg text-neutralSage font-bold">17:00 Horas</p>
                     <p class="font-sans text-[10px] text-neutralDark/60 uppercase tracking-widest font-semibold mt-0.5">Solemne Misa</p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+                    <a href="https://maps.app.goo.gl/uSH7xqqVL9eeU3my8?g_st=iw" target="_blank" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-neutralSage text-white font-medium text-xs tracking-wider uppercase transition-all duration-300 hover:bg-neutralDark hover:shadow-md">
+                        <i class="fa-solid fa-map-location-dot"></i> Ver Ubicación
+                    </a>
                 </div>
             </div>
 
-            <!-- Reception Card (Always Visible) -->
-            <div class="bg-neutralWhite rounded-3xl p-8 max-w-md mx-auto shadow-md border border-neutralSand/30 space-y-6 relative z-10 backdrop-blur-sm">
+            <div class="bg-neutralWhite rounded-3xl p-8 max-w-md mx-auto shadow-md border border-neutralSand/30 space-y-6 relative z-10 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
                 <div class="absolute top-0 right-4 transform -translate-y-1/2 bg-neutralSage text-white text-[9px] font-sans font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-sm">
                     Recepción y Fiesta
                 </div>
                 <div>
-                    <h4 class="font-serifTitle text-xl text-neutralDark font-bold">Salón Camilas Eventos</h4>
+                    <h4 class="font-serifTitle text-xl text-neutralDark font-bold">El Campanario</h4>
                     <div class="w-12 h-[1px] bg-neutralRose mx-auto my-3"></div>
                     <p class="font-sans text-sm text-neutralDark/80 font-medium">
-                        Calz. Ventura Puente 1661<br>
                         Morelia, Michoacán
                     </p>
                 </div>
 
                 <div class="bg-neutralCream/40 rounded-xl py-3 px-4 inline-block">
-                    <p class="font-serifTitle text-lg text-neutralSage font-bold">19:30 Horas</p>
+                    <p class="font-serifTitle text-lg text-neutralSage font-bold">20:00 Horas</p>
                     <p class="font-sans text-[10px] text-neutralDark/60 uppercase tracking-widest font-semibold mt-0.5">Recepción</p>
                 </div>
 
                 <div class="flex flex-col sm:flex-row gap-3 justify-center pt-2">
-                    <a href="https://maps.google.com/?q=Salón+Camilas+Eventos+Calz.+Ventura+Puente+1661+Morelia" 
-                       target="_blank" 
-                       class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-neutralSage text-white font-medium text-xs tracking-wider uppercase transition-all duration-300 hover:bg-neutralDark hover:shadow-md">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                        Ver Ubicación
+                    <a href="https://maps.app.goo.gl/DGtvMqGihj5sZXn48?g_st=iw" target="_blank" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-neutralSage text-white font-medium text-xs tracking-wider uppercase transition-all duration-300 hover:bg-neutralDark hover:shadow-md">
+                        <i class="fa-solid fa-map-location-dot"></i> Ver Ubicación
                     </a>
-
-                    <button onclick="addToCalendar()" 
-                            class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-neutralSage text-neutralSage font-medium text-xs tracking-wider uppercase transition-all duration-300 hover:bg-neutralSage/10">
-                        <i class="fa-solid fa-calendar-plus"></i>
-                        Agendar Evento
+                    <button onclick="addToCalendar()" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-neutralSage text-neutralSage font-medium text-xs tracking-wider uppercase transition-all duration-300 hover:bg-neutralSage/10">
+                        <i class="fa-solid fa-calendar-plus"></i> Agendar Evento
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- Image 6 without vertical gradients -->
-        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner" style="background-image: url('https://i.imgur.com/3Gr48G6.jpg');">
-        </div>
+        <!-- Image Separator -->
+        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner reveal" style="background-image: url('https://i.imgur.com/3Gr48G6.jpg');"></div>
 
-        <section class="py-16 px-8 bg-transparent relative">
+        <section class="py-16 px-8 bg-transparent relative reveal">
             <div class="text-center mb-12">
                 <span class="text-neutralRose text-xl opacity-80"><i class="fa-solid fa-clock"></i></span>
                 <h3 class="font-serifTitle text-2xl text-neutralDark mt-2 tracking-wide">Itinerario de Celebración</h3>
                 <p class="font-serifBody text-sm italic text-neutralDark/60 mt-1">Sigue de cerca cada momento mágico</p>
             </div>
 
-            <div class="relative max-w-sm mx-auto pl-8 border-l-2 border-neutralSand/50 space-y-12">
-                <div class="relative">
-                    <span class="absolute -left-[45px] top-0 bg-neutralWhite border-2 border-neutralSage text-neutralSage rounded-full w-8 h-8 flex items-center justify-center text-xs shadow-sm z-10">
-                        <i class="fa-solid fa-door-open"></i>
-                    </span>
-                    <div>
-                        <span class="text-xs font-sans tracking-widest uppercase font-semibold text-neutralSage">19:30 Hrs</span>
-                        <h4 class="font-serifTitle text-lg text-neutralDark font-semibold mt-1">Recepción de Invitados</h4>
-                        <p class="font-serifBody text-base text-neutralDark/70 mt-1">
-                            Bienvenidos al Salón Camilas Eventos. Se abren las puertas para comenzar la gran noche.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="relative">
-                    <span class="absolute -left-[45px] top-0 bg-neutralWhite border-2 border-neutralRose text-neutralRose rounded-full w-8 h-8 flex items-center justify-center text-xs shadow-sm z-10">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    </span>
-                    <div>
-                        <span class="text-xs font-sans tracking-widest uppercase font-semibold text-neutralRose">20:00 Hrs</span>
-                        <h4 class="font-serifTitle text-lg text-neutralDark font-semibold mt-1">Gran Entrada de los Novios</h4>
-                        <p class="font-serifBody text-base text-neutralDark/70 mt-1">
-                            Acompáñanos a recibir a los nuevos esposos entre ovaciones y mucho amor.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="relative">
-                    <span class="absolute -left-[45px] top-0 bg-neutralWhite border-2 border-neutralSage text-neutralSage rounded-full w-8 h-8 flex items-center justify-center text-xs shadow-sm z-10">
-                        <i class="fa-solid fa-utensils"></i>
-                    </span>
-                    <div>
-                        <span class="text-xs font-sans tracking-widest uppercase font-semibold text-neutralSage">20:30 Hrs</span>
-                        <h4 class="font-serifTitle text-lg text-neutralDark font-semibold mt-1">Cena de Gala</h4>
-                        <p class="font-serifBody text-base text-neutralDark/70 mt-1">
-                            Un banquete exquisito diseñado para deleitarnos y brindar por el amor de Estrella & Alejandro.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="relative">
-                    <span class="absolute -left-[45px] top-0 bg-neutralWhite border-2 border-neutralDark text-neutralDark rounded-full w-8 h-8 flex items-center justify-center text-xs shadow-sm z-10">
-                        <i class="fa-solid fa-moon"></i>
-                    </span>
-                    <div>
-                        <span class="text-xs font-sans tracking-widest uppercase font-semibold text-neutralDark">01:00 Hrs</span>
-                        <h4 class="font-serifTitle text-lg text-neutralDark font-semibold mt-1">Fin del Evento</h4>
-                        <p class="font-serifBody text-base text-neutralDark/70 mt-1">
-                            Cerramos con broche de oro una noche inolvidable que guardaremos en el corazón.
-                        </p>
-                    </div>
+            <div class="relative max-w-sm mx-auto bg-neutralWhite/80 rounded-3xl p-8 border border-neutralSand/30 text-center shadow-sm backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
+                 <i class="fa-solid fa-hourglass-half text-neutralSage text-3xl mb-4 opacity-60 animate-pulse"></i>
+                 <h4 class="font-serifTitle text-lg text-neutralDark font-semibold">Horarios por Definir</h4>
+                 <p class="font-serifBody text-base text-neutralDark/70 mt-2">
+                    Pronto actualizaremos esta sección con el itinerario detallado de nuestra boda.
+                 </p>
+                 <div class="inline-block mt-4 px-3 py-1 bg-neutralCream text-neutralDark/60 text-[9px] uppercase tracking-widest font-bold rounded-full">
+                    Pendiente
                 </div>
             </div>
         </section>
 
-        <!-- Image 7 without vertical gradients -->
-        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner" style="background-image: url('https://i.imgur.com/JMKCWPi.jpg');">
-        </div>
+        <!-- Image Separator -->
+        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner reveal" style="background-image: url('https://i.imgur.com/JMKCWPi.jpg');"></div>
 
-        <section class="py-16 px-6 bg-transparent text-center relative">
+        <section class="py-16 px-6 bg-transparent text-center relative reveal">
             <span class="text-neutralSage text-2xl opacity-80"><i class="fa-solid fa-user-tie"></i></span>
             <h3 class="font-serifTitle text-2xl text-neutralDark mt-3 mb-6 tracking-wide">Código de Vestimenta</h3>
 
-            <div class="bg-neutralWhite rounded-3xl p-8 max-w-md mx-auto shadow-sm border border-neutralSand/30 space-y-4 backdrop-blur-sm">
+            <div class="bg-neutralWhite rounded-3xl p-8 max-w-md mx-auto shadow-sm border border-neutralSand/30 space-y-4 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
                 <p class="font-serifBody text-2xl text-neutralDark font-medium">
                     Vestimenta: <span class="text-neutralSage font-serifTitle font-semibold">Formal</span>
                 </p>
@@ -436,16 +338,54 @@
                     Agradecemos su gentil colaboración vistiendo de etiqueta formal.
                 </p>
                 <p class="font-serifBody text-base text-neutralSage italic font-medium leading-relaxed px-4">
-                    * Nota: Con mucho cariño, les pedimos reservar el color blanco para la novia y el rosa para las damas de honor.
+                    * Nota: Con mucho cariño, les pedimos <strong class="font-bold">no ir de blanco</strong> (color reservado para la novia).
                 </p>
             </div>
         </section>
 
-        <!-- Final Image before RSVP without vertical gradients -->
-        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner" style="background-image: url('https://i.imgur.com/c1aYtCt.jpg');">
-        </div>
+        <section class="py-16 px-6 bg-transparent text-center relative border-t border-neutralSand/20 reveal">
+            <span class="text-neutralRose text-2xl opacity-80"><i class="fa-solid fa-gift"></i></span>
+            <h3 class="font-serifTitle text-2xl text-neutralDark mt-3 mb-6 tracking-wide">Mesa de Regalos</h3>
 
-        <section class="py-16 px-6 bg-transparent text-center relative border-t border-neutralSand/20">
+            <div class="bg-neutralWhite rounded-3xl p-8 max-w-md mx-auto shadow-sm border border-neutralSand/30 space-y-4 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
+                <i class="fa-solid fa-box-open text-neutralSage text-3xl mb-2 opacity-50"></i>
+                <h4 class="font-serifTitle text-lg text-neutralDark font-semibold">Información Pendiente</h4>
+                <p class="font-serifBody text-base text-neutralDark/70 leading-relaxed px-4">
+                    En breve compartiremos con ustedes los datos de nuestra mesa de regalos o cuenta bancaria. ¡Agradecemos mucho su cariño!
+                </p>
+                <div class="inline-block mt-4 px-3 py-1 bg-neutralCream text-neutralDark/60 text-[9px] uppercase tracking-widest font-bold rounded-full">
+                    Pendiente
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 px-6 bg-transparent text-center relative overflow-hidden reveal">
+            <span class="text-neutralSage text-xl opacity-80"><i class="fa-solid fa-camera-retro"></i></span>
+            <h3 class="font-serifTitle text-2xl text-neutralDark mt-2 tracking-wide">Galería</h3>
+            <p class="font-serifBody text-sm italic text-neutralDark/60 mt-1 mb-8">Un viaje de amor y complicidad</p>
+
+            <div class="relative max-w-sm mx-auto rounded-3xl overflow-hidden aspect-[4/5] shadow-lg border-4 border-neutralWhite group bg-neutralWhite">
+                <div id="gallery-carousel" class="w-full h-full relative cursor-pointer" onclick="openLightbox(currentGalleryIndex)">
+                    <!-- Las imágenes se inyectarán vía JS -->
+                </div>
+
+                <button onclick="prevGallerySlide(event)" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-9 h-9 rounded-full bg-neutralWhite/80 backdrop-blur-sm flex items-center justify-center text-neutralDark hover:bg-neutralWhite transition-all z-10">
+                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                </button>
+                <button onclick="nextGallerySlide(event)" class="absolute right-3 top-1/2 transform -translate-y-1/2 w-9 h-9 rounded-full bg-neutralWhite/80 backdrop-blur-sm flex items-center justify-center text-neutralDark hover:bg-neutralWhite transition-all z-10">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </button>
+
+                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-neutralDark/60 backdrop-blur-sm text-neutralWhite text-[10px] tracking-widest uppercase py-1 px-3 rounded-full font-medium pointer-events-none">
+                    <span id="gallery-indicator">1 / 14</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Separator -->
+        <div class="w-full h-72 sm:h-96 bg-cover bg-center relative shadow-inner reveal" style="background-image: url('https://i.imgur.com/c1aYtCt.jpg');"></div>
+
+        <section class="py-16 px-6 bg-transparent text-center relative border-t border-neutralSand/20 reveal">
             <span class="text-neutralRose text-2xl opacity-80"><i class="fa-solid fa-envelope-open-text"></i></span>
             <h3 class="font-serifTitle text-2xl text-neutralDark mt-3 mb-2 tracking-wide">Confirmación de Asistencia</h3>
             
@@ -453,24 +393,22 @@
                 Compartir este día con ustedes es nuestra mayor alegría.
             </p>
             
-            <div class="bg-neutralWhite/95 rounded-xl py-2 px-4 max-w-xs mx-auto mb-8 inline-block border border-neutralSand/40 backdrop-blur-sm shadow-sm">
+            <div class="bg-neutralWhite/95 rounded-xl py-2 px-4 max-w-xs mx-auto mb-8 inline-block border border-neutralSand/40 backdrop-blur-sm shadow-sm transition-transform duration-300 hover:-translate-y-1">
                 <p class="font-sans text-[11px] uppercase tracking-wider text-neutralSage font-bold">Límite de Confirmación</p>
-                <p id="rsvp-deadline-text" class="font-serifTitle text-sm text-neutralDark font-semibold mt-0.5">Sábado, 24 de Octubre de 2026</p>
+                <p id="rsvp-deadline-text" class="font-serifTitle text-sm text-neutralDark font-semibold mt-0.5">Lunes, 31 de Agosto de 2026</p>
             </div>
 
-            <div id="rsvp-form-card" class="bg-neutralWhite/95 rounded-3xl p-6 max-w-md mx-auto border border-neutralSand/30 text-left space-y-4 shadow-md backdrop-blur-sm">
+            <div id="rsvp-form-card" class="bg-neutralWhite/95 rounded-3xl p-6 max-w-md mx-auto border border-neutralSand/30 text-left space-y-4 shadow-md backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1">
                 <div>
                     <label for="rsvp-name" class="block font-sans text-[11px] uppercase tracking-widest text-neutralSage font-bold mb-1.5">Nombre Completo</label>
                     <input type="text" id="rsvp-name" placeholder="Ej. Maria Rubio Villa" 
                            class="w-full px-4 py-3 rounded-xl border border-neutralSand bg-neutralWhite font-sans text-sm focus:outline-none focus:ring-2 focus:ring-neutralSage/50 focus:border-neutralSage text-neutralDark transition-all">
                 </div>
-
                 <div>
                     <label for="rsvp-phone" class="block font-sans text-[11px] uppercase tracking-widest text-neutralSage font-bold mb-1.5">Teléfono Celular / WhatsApp</label>
                     <input type="tel" id="rsvp-phone" placeholder="Ej. 443 123 4567" 
                            class="w-full px-4 py-3 rounded-xl border border-neutralSand bg-neutralWhite font-sans text-sm focus:outline-none focus:ring-2 focus:ring-neutralSage/50 focus:border-neutralSage text-neutralDark transition-all">
                 </div>
-
                 <div>
                     <div class="flex justify-between items-center mb-1.5">
                         <label for="rsvp-guests" class="block font-sans text-[11px] uppercase tracking-widest text-neutralSage font-bold">Número de Pases a Confirmar</label>
@@ -479,11 +417,8 @@
                     <select id="rsvp-guests" class="w-full px-4 py-3 rounded-xl border border-neutralSand bg-neutralWhite font-sans text-sm focus:outline-none focus:ring-2 focus:ring-neutralSage/50 focus:border-neutralSage text-neutralDark transition-all">
                     </select>
                 </div>
-
-                <button onclick="submitDirectRSVP()" id="btn-submit-rsvp"
-                        class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-neutralSage text-white font-medium text-sm tracking-wider uppercase transition-all duration-300 hover:bg-neutralDark hover:shadow-lg mt-2">
-                    <i class="fa-solid fa-paper-plane text-base"></i>
-                    Enviar Confirmación
+                <button onclick="submitDirectRSVP()" id="btn-submit-rsvp" class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-neutralSage text-white font-medium text-sm tracking-wider uppercase transition-all duration-300 hover:bg-neutralDark hover:shadow-lg mt-2">
+                    <i class="fa-solid fa-paper-plane text-base"></i> Enviar Confirmación
                 </button>
             </div>
 
@@ -493,7 +428,7 @@
                 </div>
                 <h4 class="font-serifTitle text-xl text-neutralDark font-bold">¡Confirmación Recibida!</h4>
                 <p id="rsvp-success-msg" class="font-serifBody text-base text-neutralDark/80 leading-relaxed">
-                    Muchas gracias por registrar tus datos. Tu asistencia ha quedado guardada en nuestra lista. La wedding planner se pondrá en contacto contigo pronto.
+                    Muchas gracias por registrar tus datos. Tu asistencia ha quedado guardada.
                 </p>
             </div>
         </section>
@@ -504,13 +439,17 @@
             <div class="w-8 h-[1px] bg-neutralRose mx-auto"></div>
             <p class="font-sans text-[9px] uppercase tracking-[0.2em] text-neutralDark/40">Hecho con amor • 2026</p>
         </footer>
-
     </div>
 
-    <!-- Admin Panel -->
-    <div id="settings-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center px-4 hidden transition-all duration-300">
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="fixed inset-0 z-[100] bg-black/95 hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300 backdrop-blur-md">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-4xl hover:text-neutralRose z-10 transition-colors">&times;</button>
+        <img id="lightbox-img" src="" class="max-w-[95%] max-h-[85vh] object-contain rounded-lg shadow-2xl">
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="settings-modal" class="fixed inset-0 z-[80] bg-black/60 backdrop-blur-sm flex items-center justify-center px-4 hidden transition-all duration-300">
         <div class="bg-neutralWhite rounded-3xl p-6 max-w-xl w-full shadow-2xl border border-neutralSand max-h-[92vh] overflow-y-auto space-y-5">
-            
             <div class="flex justify-between items-center pb-2 border-b border-neutralSand">
                 <h3 class="font-serifTitle text-lg text-neutralDark font-semibold flex items-center gap-2">
                     <i class="fa-solid fa-sliders text-neutralSage"></i> Panel de Administración
@@ -523,107 +462,73 @@
             <!-- Tab Switcher -->
             <div class="flex gap-2 border-b border-neutralSand/60 pb-2">
                 <button onclick="switchAdminTab('generator')" id="tab-btn-generator" class="px-3 py-1.5 rounded-lg font-sans text-xs font-bold uppercase transition-all bg-neutralSage text-white">
-                    <i class="fa-solid fa-link"></i> Generador de Enlaces
+                    <i class="fa-solid fa-link"></i> Generador
                 </button>
                 <button onclick="switchAdminTab('rsvps')" id="tab-btn-rsvps" class="px-3 py-1.5 rounded-lg font-sans text-xs font-bold uppercase transition-all bg-neutralCream/60 text-neutralDark hover:bg-neutralCream">
-                    <i class="fa-solid fa-table"></i> Tabla de Confirmaciones (<span id="rsvp-count-badge">0</span>)
+                    <i class="fa-solid fa-table"></i> Confirmaciones (<span id="rsvp-count-badge">0</span>)
                 </button>
             </div>
 
-            <!-- Tab 1: Link Generator & Config -->
+            <!-- Tab 1: Link Generator -->
             <div id="admin-tab-generator" class="space-y-4">
                 <div class="bg-neutralCream/40 border border-neutralSand/50 rounded-2xl p-4 space-y-3">
-                    <span class="block font-sans text-[11px] uppercase tracking-wider text-neutralDark font-bold text-center">Generar Enlace Personalizado por Familia</span>
+                    <span class="block font-sans text-[11px] uppercase tracking-wider text-neutralDark font-bold text-center">Generar Enlace Personalizado</span>
                     
                     <div>
-                        <label for="gen-family-name" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Nombre de la Familia / Invitado (Opcional)</label>
-                        <input type="text" id="gen-family-name" placeholder="Ej. Familia Guzmán Rubio" 
-                               class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
+                        <label for="gen-family-name" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Nombre Invitado (Opcional)</label>
+                        <input type="text" id="gen-family-name" placeholder="Ej. Familia Guzmán Rubio" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
                     </div>
-
-                    <div class="grid grid-cols-2 gap-3">
-                        <div>
-                            <label for="gen-passes" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Límite de Pases</label>
-                            <select id="gen-passes" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
-                                <option value="0">Estándar (1 a 5 pases)</option>
-                                <option value="1">1 Pase asignado</option>
-                                <option value="2">2 Pases asignados</option>
-                                <option value="3">3 Pases asignados</option>
-                                <option value="4">4 Pases asignados</option>
-                                <option value="5">5 Pases asignados</option>
-                                <option value="6">6 Pases asignados</option>
-                                <option value="7">7 Pases asignados</option>
-                                <option value="8">8 Pases asignados</option>
-                                <option value="9">9 Pases asignados</option>
-                                <option value="10">10 Pases asignados</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label for="gen-ceremony" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">¿Mostrar Ceremonia?</label>
-                            <select id="gen-ceremony" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
-                                <option value="no">No (Solo Recepción)</option>
-                                <option value="yes" selected>Sí (Ceremonia + Recepción)</option>
-                            </select>
-                        </div>
+                    <div>
+                        <label for="gen-passes" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Límite de Pases</label>
+                        <select id="gen-passes" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
+                            <option value="0">Estándar (1 a 5)</option>
+                            <option value="1">1 Pase</option><option value="2">2 Pases</option><option value="3">3 Pases</option>
+                            <option value="4">4 Pases</option><option value="5">5 Pases</option><option value="6">6 Pases</option>
+                            <option value="7">7 Pases</option><option value="8">8 Pases</option><option value="9">9 Pases</option><option value="10">10 Pases</option>
+                        </select>
                     </div>
-
                     <button onclick="generateCustomLink()" class="w-full bg-neutralSage text-white px-3 py-2.5 rounded-xl text-xs font-bold uppercase hover:bg-neutralDark transition-all flex items-center justify-center gap-2 mt-2">
-                        <i class="fa-solid fa-copy"></i> Generar y Copiar Enlace
+                        <i class="fa-solid fa-copy"></i> Generar y Copiar
                     </button>
                 </div>
 
                 <div class="space-y-3 pt-2 border-t border-neutralSand/40">
-                    <span class="block font-sans text-[11px] uppercase tracking-wider text-neutralSage font-bold">Ajustes Generales del Evento</span>
-                    
+                    <span class="block font-sans text-[11px] uppercase tracking-wider text-neutralSage font-bold">Ajustes Generales</span>
                     <div class="grid grid-cols-2 gap-3">
                         <div>
-                            <label for="set-wedding-date" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Fecha de la Boda</label>
-                            <input type="datetime-local" id="set-wedding-date" value="2026-10-31T19:30"
-                                   class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
+                            <label for="set-wedding-date" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Fecha Evento</label>
+                            <input type="datetime-local" id="set-wedding-date" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
                         </div>
-
                         <div>
-                            <label for="set-rsvp-deadline" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Límite de Confirmación</label>
-                            <input type="date" id="set-rsvp-deadline" value="2026-10-24"
-                                   class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
+                            <label for="set-rsvp-deadline" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Límite RSVP</label>
+                            <input type="date" id="set-rsvp-deadline" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
                         </div>
                     </div>
-
-                    <div>
-                        <label for="set-rsvp-phone" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Celular / Contacto Novios</label>
-                        <input type="text" id="set-rsvp-phone" value="4431011723"
-                               class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
-                    </div>
-
                     <div class="grid grid-cols-2 gap-3">
                         <div>
-                            <label for="set-ceremony-venue" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Lugar de Ceremonia</label>
-                            <input type="text" id="set-ceremony-venue" value="Salón Camilas"
-                                   class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
+                            <label for="set-ceremony-venue" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Templo</label>
+                            <input type="text" id="set-ceremony-venue" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
                         </div>
-
                         <div>
-                            <label for="set-ceremony-time" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Hora de Ceremonia</label>
-                            <input type="text" id="set-ceremony-time" value="17:30 Horas"
-                                   class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
+                            <label for="set-ceremony-time" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Hora Misa</label>
+                            <input type="text" id="set-ceremony-time" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
                         </div>
                     </div>
-
                     <div>
-                        <label for="set-music-url" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Enlace MP3 de Música</label>
-                        <input type="text" id="set-music-url" value="https://www.dropbox.com/scl/fi/3vs1w0yui1qxcqyrfw546/Enchanted.mp3?rlkey=vrq78dkm8obucrwam552ch6yt&st=55hv8ofb&dl=1"
-                               class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
+                        <label for="set-rsvp-phone" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Teléfono RSVP</label>
+                        <input type="text" id="set-rsvp-phone" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
                     </div>
-
-                    <button onclick="applyConfiguration()"
-                            class="w-full py-3 bg-neutralSage text-white font-semibold text-xs tracking-widest uppercase rounded-xl hover:bg-neutralDark transition-colors">
-                        Guardar Cambios de Configuración
+                    <div>
+                        <label for="set-music-url" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Enlace MP3 Música</label>
+                        <input type="text" id="set-music-url" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
+                    </div>
+                    <button onclick="applyConfiguration()" class="w-full py-3 bg-neutralSage text-white font-semibold text-xs tracking-widest uppercase rounded-xl hover:bg-neutralDark transition-colors">
+                        Guardar Configuración
                     </button>
                 </div>
             </div>
 
-            <!-- Tab 2: RSVP Table & Export -->
+            <!-- Tab 2: RSVP Table -->
             <div id="admin-tab-rsvps" class="hidden space-y-4">
                 <div class="flex justify-between items-center bg-neutralCream/30 p-3 rounded-2xl border border-neutralSand/40">
                     <div>
@@ -632,33 +537,25 @@
                             Total Registros: <strong id="summary-total-records">0</strong> | Total Pases Solic.: <strong id="summary-total-passes">0</strong>
                         </p>
                     </div>
-                    
                     <button onclick="exportRSVPToCSV()" class="bg-neutralSage text-white px-3 py-2 rounded-xl text-xs font-bold uppercase hover:bg-neutralDark transition-all flex items-center gap-1.5 shadow-sm">
                         <i class="fa-solid fa-file-excel"></i> Descargar Excel (CSV)
                     </button>
                 </div>
-
-                <p class="font-sans text-[10px] text-neutralDark/60 italic">
-                    * Nota: Las confirmaciones enviadas también se remiten a <code>drdeckofficial@gmail.com</code> para notificación inmediata.
-                </p>
-
                 <div class="border border-neutralSand/50 rounded-2xl overflow-x-auto max-h-60 bg-neutralWhite">
                     <table class="w-full text-left font-sans text-xs">
                         <thead class="bg-neutralCream text-neutralDark font-bold uppercase text-[9px] tracking-wider sticky top-0">
                             <tr>
-                                <th class="p-2.5">Nombre Completo</th>
-                                <th class="p-2.5">Teléfono Celular</th>
+                                <th class="p-2.5">Nombre</th>
+                                <th class="p-2.5">Teléfono</th>
                                 <th class="p-2.5 text-center">Pases</th>
                                 <th class="p-2.5 text-center">Ceremonia</th>
                                 <th class="p-2.5">Fecha Envío</th>
                                 <th class="p-2.5 text-center">Acción</th>
                             </tr>
                         </thead>
-                        <tbody id="rsvp-table-body" class="divide-y divide-neutralSand/30 text-neutralDark">
-                        </tbody>
+                        <tbody id="rsvp-table-body" class="divide-y divide-neutralSand/30 text-neutralDark"></tbody>
                     </table>
                 </div>
-
                 <div class="flex justify-between items-center pt-2">
                     <button onclick="clearAllRSVPs()" class="text-[10px] text-red-500 hover:text-red-700 font-bold uppercase underline">
                         Borrar todas las confirmaciones
@@ -666,20 +563,19 @@
                     <span class="text-[9px] text-neutralDark/50 uppercase tracking-widest">Sincronizado Local</span>
                 </div>
             </div>
-
         </div>
     </div>
 
     <script>
         let weddingConfig = {
-            weddingDate: "2026-10-31T19:30:00",
-            rsvpDeadline: "2026-10-24",
+            weddingDate: "2026-10-31T17:00:00",
+            rsvpDeadline: "2026-08-31",
             rsvpPhone: "4431011723",
             heroImg: "https://i.imgur.com/FjhC4vV.jpg",
             countdownBg: "https://i.imgur.com/LFfULuL.jpg",
             musicUrl: "https://www.dropbox.com/scl/fi/3vs1w0yui1qxcqyrfw546/Enchanted.mp3?rlkey=vrq78dkm8obucrwam552ch6yt&st=55hv8ofb&dl=1",
-            ceremonyVenue: "Salón Camilas",
-            ceremonyTime: "17:30 Horas",
+            ceremonyVenue: "Santuario de El Santo Niño de La Salud",
+            ceremonyTime: "17:00 Horas",
             galleryImages: [
                 "https://i.imgur.com/67QqQ7a.jpg",
                 "https://i.imgur.com/0RZqLg2.jpg",
@@ -701,7 +597,7 @@
         let countdownInterval;
         let isMusicPlaying = false;
         let currentGalleryIndex = 0;
-        const totalGallerySlides = 14; 
+        const totalGallerySlides = weddingConfig.galleryImages.length; 
         let rsvpList = [];
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -712,6 +608,8 @@
             checkGuestParameters();
             checkAdminParameter();
             prepareAudioSource();
+            initRevealAnimations();
+            buildGallery();
         });
 
         function getCleanAudioUrl(rawUrl) {
@@ -730,14 +628,64 @@
             document.getElementById('bg-music').load();
         }
 
+        function initRevealAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                        entry.target.style.opacity = '1';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                el.style.opacity = '0';
+                observer.observe(el);
+            });
+        }
+
+        function buildGallery() {
+            const container = document.getElementById('gallery-carousel');
+            container.innerHTML = '';
+            weddingConfig.galleryImages.forEach((src, i) => {
+                const img = document.createElement('img');
+                img.id = `gallery-img-${i}`;
+                img.src = src;
+                img.alt = `Galería ${i + 1}`;
+                img.className = `absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${i === 0 ? 'opacity-100' : 'opacity-0'}`;
+                container.appendChild(img);
+            });
+            document.getElementById('gallery-indicator').innerText = `1 / ${totalGallerySlides}`;
+        }
+
+        function openLightbox(index) {
+            currentGalleryIndex = index;
+            const lightbox = document.getElementById('lightbox-modal');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = weddingConfig.galleryImages[index];
+            lightbox.classList.remove('hidden');
+            void lightbox.offsetWidth; // Trigger reflow
+            lightbox.classList.remove('opacity-0');
+            lightbox.classList.add('opacity-100');
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox-modal');
+            lightbox.classList.remove('opacity-100');
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+            }, 300);
+        }
+
         function loadSavedSettings() {
-            const savedData = localStorage.getItem('wedding_config_estrella_alejandro');
+            const savedData = localStorage.getItem('wedding_config_estrella_alex');
             if (savedData) {
                 try {
                     const parsed = JSON.parse(savedData);
                     weddingConfig = { ...weddingConfig, ...parsed };
                 } catch(e) {
-                    console.error("No se pudo cargar la configuración de localStorage", e);
+                    console.error("Error loading config", e);
                 }
             }
             applyConfigToUI();
@@ -745,7 +693,6 @@
 
         function applyConfigToUI() {
             const dOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            
             const safeWeddingStr = weddingConfig.weddingDate.replace(/-/g, '/').replace('T', ' ');
             const parsedWedding = new Date(safeWeddingStr);
             document.getElementById('wedding-date-display').innerText = parsedWedding.toLocaleDateString('es-ES', dOptions);
@@ -756,21 +703,10 @@
 
             document.getElementById('ceremony-venue-display').innerText = weddingConfig.ceremonyVenue;
             document.getElementById('ceremony-time-display').innerText = weddingConfig.ceremonyTime;
-
-            document.getElementById('hero-img-bg').style.backgroundImage = `url('${weddingConfig.heroImg}')`;
-            document.getElementById('countdown-section').style.backgroundImage = `url('${weddingConfig.countdownBg}')`;
         }
 
         function checkGuestParameters() {
             const urlParams = new URLSearchParams(window.location.search);
-            
-            const showCeremony = urlParams.get('c') === '1' || urlParams.get('ceremonia') === 'true';
-            const ceremonyCard = document.getElementById('religious-ceremony-card');
-            if (showCeremony) {
-                ceremonyCard.classList.remove('hidden');
-            } else {
-                ceremonyCard.classList.add('hidden');
-            }
 
             const familyName = urlParams.get('n') || urlParams.get('nombre');
             if (familyName) {
@@ -797,16 +733,13 @@
                 }
             } else {
                 guestsSelect.innerHTML = `
-                    <option value="1">1 Pase</option>
-                    <option value="2" selected>2 Pases</option>
-                    <option value="3">3 Pases</option>
-                    <option value="4">4 Pases</option>
-                    <option value="5">5 Pases</option>
+                    <option value="1">1 Pase</option><option value="2" selected>2 Pases</option>
+                    <option value="3">3 Pases</option><option value="4">4 Pases</option><option value="5">5 Pases</option>
                 `;
                 if (passesLabel) passesLabel.classList.add('hidden');
             }
 
-            const hasConfirmed = localStorage.getItem('wedding_rsvp_submitted_estrella_alejandro');
+            const hasConfirmed = localStorage.getItem('wedding_rsvp_submitted_estrella_alex');
             if (hasConfirmed) {
                 document.getElementById('rsvp-form-card').classList.add('hidden');
                 document.getElementById('rsvp-success-card').classList.remove('hidden');
@@ -817,12 +750,8 @@
             const urlParams = new URLSearchParams(window.location.search);
             const isAdmin = urlParams.get('admin') === '1';
             const adminGear = document.getElementById('admin-gear-container');
-            
-            if (isAdmin) {
-                adminGear.classList.remove('hidden');
-            } else {
-                adminGear.classList.add('hidden');
-            }
+            if (isAdmin) adminGear.classList.remove('hidden');
+            else adminGear.classList.add('hidden');
         }
 
         function initLeaves() {
@@ -830,15 +759,11 @@
             const totalLeaves = 15;
             for (let i = 0; i < totalLeaves; i++) {
                 const leaf = document.createElement('div');
-                leaf.className = 'leaf text-neutralSage';
+                leaf.className = 'leaf text-neutralSand';
                 leaf.style.setProperty('--random-x', Math.random());
                 leaf.style.animationDelay = `${Math.random() * 10}s`;
                 leaf.style.animationDuration = `${8 + Math.random() * 8}s`;
-                leaf.innerHTML = `
-                    <svg viewBox="0 0 100 100" class="w-4 h-4 fill-current">
-                        <path d="M50 0 C60 30 90 40 100 50 C80 60 70 80 50 100 C30 80 20 60 0 50 C10 40 40 30 50 0 Z"></path>
-                    </svg>
-                `;
+                leaf.innerHTML = `<svg viewBox="0 0 100 100" class="w-4 h-4 fill-current"><path d="M50 0 C60 30 90 40 100 50 C80 60 70 80 50 100 C30 80 20 60 0 50 C10 40 40 30 50 0 Z"></path></svg>`;
                 container.appendChild(leaf);
             }
         }
@@ -866,9 +791,7 @@
 
             const envelope = document.getElementById('envelope-screen');
             envelope.classList.add('translate-y-[-100vh]', 'opacity-0');
-            setTimeout(() => {
-                envelope.classList.add('hidden');
-            }, 1000);
+            setTimeout(() => envelope.classList.add('hidden'), 1000);
 
             const music = document.getElementById('bg-music');
             music.src = getCleanAudioUrl(weddingConfig.musicUrl);
@@ -880,9 +803,7 @@
                 document.getElementById('music-icon').className = 'fa-solid fa-pause text-lg';
                 document.getElementById('audio-visualizer').classList.remove('hidden');
                 fadeInAudio(music, 3000);
-            }).catch(err => {
-                console.log("Audio autoplay prevented by browser.");
-            });
+            }).catch(err => console.log("Audio prevented."));
         }
 
         function toggleMusic() {
@@ -902,7 +823,6 @@
 
         function initCountdown() {
             if (countdownInterval) clearInterval(countdownInterval);
-
             const daysElem = document.getElementById('countdown-days');
             const hoursElem = document.getElementById('countdown-hours');
             const minsElem = document.getElementById('countdown-minutes');
@@ -916,12 +836,9 @@
                 const diff = targetDate - now;
 
                 if (diff <= 0) {
-                    daysElem.innerText = "00";
-                    hoursElem.innerText = "00";
-                    minsElem.innerText = "00";
-                    secsElem.innerText = "00";
-                    clearInterval(countdownInterval);
-                    return;
+                    daysElem.innerText = "00"; hoursElem.innerText = "00";
+                    minsElem.innerText = "00"; secsElem.innerText = "00";
+                    clearInterval(countdownInterval); return;
                 }
 
                 const d = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -934,7 +851,6 @@
                 minsElem.innerText = m < 10 ? '0' + m : m;
                 secsElem.innerText = s < 10 ? '0' + s : s;
             }
-
             updateTimer();
             countdownInterval = setInterval(updateTimer, 1000);
         }
@@ -944,37 +860,25 @@
                 const img = document.getElementById(`gallery-img-${i}`);
                 if (img) {
                     if (i === currentGalleryIndex) {
-                        img.classList.remove('opacity-0');
-                        img.classList.add('opacity-100');
+                        img.classList.remove('opacity-0'); img.classList.add('opacity-100');
                     } else {
-                        img.classList.remove('opacity-100');
-                        img.classList.add('opacity-0');
+                        img.classList.remove('opacity-100'); img.classList.add('opacity-0');
                     }
                 }
             }
             document.getElementById('gallery-indicator').innerText = `${currentGalleryIndex + 1} / ${totalGallerySlides}`;
         }
 
-        function nextGallerySlide() {
+        function nextGallerySlide(e) {
+            e.stopPropagation();
             currentGalleryIndex = (currentGalleryIndex + 1) % totalGallerySlides;
             updateGalleryView();
         }
 
-        function prevGallerySlide() {
+        function prevGallerySlide(e) {
+            e.stopPropagation();
             currentGalleryIndex = (currentGalleryIndex - 1 + totalGallerySlides) % totalGallerySlides;
             updateGalleryView();
-        }
-
-        function copyRegistryCode() {
-            const eventCode = document.getElementById('event-number').innerText;
-            const input = document.createElement('input');
-            input.setAttribute('value', eventCode);
-            document.body.appendChild(input);
-            input.select();
-            document.execCommand('copy');
-            document.body.removeChild(input);
-
-            showToast("Código de Liverpool Copiado!");
         }
 
         function showToast(message) {
@@ -982,7 +886,6 @@
             document.getElementById('toast-message').innerText = message;
             toast.classList.remove('opacity-0', 'pointer-events-none');
             toast.classList.add('opacity-100');
-
             setTimeout(() => {
                 toast.classList.remove('opacity-100');
                 toast.classList.add('opacity-0', 'pointer-events-none');
@@ -994,86 +897,43 @@
             const phone = document.getElementById('rsvp-phone').value.trim();
             const guests = document.getElementById('rsvp-guests').value;
 
-            if (!name) {
-                showToast("Por favor, introduce tu Nombre Completo.");
-                document.getElementById('rsvp-name').focus();
+            if (!name || !phone || phone.length < 8) {
+                showToast("Por favor, llena correctamente tus datos.");
                 return;
             }
 
-            if (!phone || phone.length < 8) {
-                showToast("Por favor, ingresa tu número de teléfono.");
-                document.getElementById('rsvp-phone').focus();
-                return;
-            }
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const includesCeremony = urlParams.get('c') === '1' ? 'Sí' : 'No';
+            const includesCeremony = 'Sí';
 
             const newRecord = {
-                id: Date.now(),
-                name: name,
-                phone: phone,
-                passes: parseInt(guests),
-                ceremony: includesCeremony,
-                date: new Date().toLocaleString('es-MX')
+                id: Date.now(), name: name, phone: phone, passes: parseInt(guests),
+                ceremony: includesCeremony, date: new Date().toLocaleString('es-MX')
             };
 
             rsvpList.push(newRecord);
             saveRSVPsToStorage();
-
-            localStorage.setItem('wedding_rsvp_submitted_estrella_alejandro', 'true');
-
-            try {
-                fetch("https://formsubmit.co/ajax/drdeckofficial@gmail.com", {
-                    method: "POST",
-                    headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        _subject: `Nueva Confirmación Boda: ${name}`,
-                        Nombre: name,
-                        Telefono: phone,
-                        Pases_Confirmados: guests,
-                        Invita_Ceremonia: includesCeremony,
-                        Fecha_Registro: newRecord.date
-                    })
-                }).catch(err => console.log("Background email submission error", err));
-            } catch(e) {
-                console.log("Submit silent fail", e);
-            }
+            localStorage.setItem('wedding_rsvp_submitted_estrella_alex', 'true');
 
             document.getElementById('rsvp-form-card').classList.add('hidden');
             document.getElementById('rsvp-success-card').classList.remove('hidden');
-
             showToast("¡Confirmación Registrada!");
         }
 
         function loadSavedRSVPs() {
-            const stored = localStorage.getItem('wedding_rsvps_list_estrella_alejandro');
+            const stored = localStorage.getItem('wedding_rsvps_list_estrella_alex');
             if (stored) {
-                try {
-                    rsvpList = JSON.parse(stored);
-                } catch(e) {
-                    rsvpList = [];
-                }
+                try { rsvpList = JSON.parse(stored); } catch(e) { rsvpList = []; }
             }
             renderRSVPTable();
         }
 
         function saveRSVPsToStorage() {
-            localStorage.setItem('wedding_rsvps_list_estrella_alejandro', JSON.stringify(rsvpList));
+            localStorage.setItem('wedding_rsvps_list_estrella_alex', JSON.stringify(rsvpList));
             renderRSVPTable();
         }
 
         function renderRSVPTable() {
             const tbody = document.getElementById('rsvp-table-body');
-            const badge = document.getElementById('rsvp-count-badge');
-            const totalRec = document.getElementById('summary-total-records');
-            const totalPass = document.getElementById('summary-total-passes');
-
             if (!tbody) return;
-
             tbody.innerHTML = '';
             let sumPasses = 0;
 
@@ -1091,67 +951,48 @@
                         <td class="p-2.5 text-center">${item.ceremony === 'Sí' ? '✨ Sí' : 'No'}</td>
                         <td class="p-2.5 text-[10px] text-neutralDark/70">${item.date}</td>
                         <td class="p-2.5 text-center">
-                            <button onclick="deleteRSVPRecord(${item.id})" class="text-red-400 hover:text-red-600 p-1" title="Eliminar">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
+                            <button onclick="deleteRSVPRecord(${item.id})" class="text-red-400 hover:text-red-600 p-1" title="Eliminar"><i class="fa-solid fa-trash-can"></i></button>
                         </td>
                     `;
                     tbody.appendChild(tr);
                 });
             }
 
-            if (badge) badge.innerText = rsvpList.length;
-            if (totalRec) totalRec.innerText = rsvpList.length;
-            if (totalPass) totalPass.innerText = sumPasses;
+            document.getElementById('rsvp-count-badge').innerText = rsvpList.length;
+            document.getElementById('summary-total-records').innerText = rsvpList.length;
+            document.getElementById('summary-total-passes').innerText = sumPasses;
         }
 
         function deleteRSVPRecord(id) {
             rsvpList = rsvpList.filter(item => item.id !== id);
-            saveRSVPsToStorage();
-            showToast("Registro eliminado");
+            saveRSVPsToStorage(); showToast("Registro eliminado");
         }
 
         function clearAllRSVPs() {
             if (rsvpList.length === 0) return;
-            rsvpList = [];
-            saveRSVPsToStorage();
-            showToast("Se han borrado todas las confirmaciones");
+            rsvpList = []; saveRSVPsToStorage(); showToast("Registros borrados");
         }
 
         function exportRSVPToCSV() {
-            if (rsvpList.length === 0) {
-                showToast("No hay datos para exportar.");
-                return;
-            }
-
-            let csvContent = "\uFEFF";
-            csvContent += "Nombre Completo,Telefono,Pases Confirmados,Invita Ceremonia,Fecha de Registro\n";
-
+            if (rsvpList.length === 0) { showToast("No hay datos."); return; }
+            let csvContent = "\uFEFFNombre Completo,Telefono,Pases Confirmados,Invita Ceremonia,Fecha de Registro\n";
             rsvpList.forEach(item => {
                 const safeName = `"${item.name.replace(/"/g, '""')}"`;
                 const safePhone = `"${item.phone.replace(/"/g, '""')}"`;
                 csvContent += `${safeName},${safePhone},${item.passes},${item.ceremony},"${item.date}"\n`;
             });
-
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const url = URL.createObjectURL(blob);
             const link = document.createElement("a");
-            link.setAttribute("href", url);
-            link.setAttribute("download", `Confirmaciones_Boda_Estrella_y_Alejandro_${new Date().toISOString().slice(0,10)}.csv`);
-            document.body.appendChild(link);
+            link.href = URL.createObjectURL(blob);
+            link.download = `Confirmaciones_Estrella_Alejandro_${new Date().toISOString().slice(0,10)}.csv`;
             link.click();
-            document.body.removeChild(link);
-
-            showToast("¡Lista descargada en Excel (CSV)!");
         }
 
         function addToCalendar() {
             const title = encodeURIComponent("Boda de Estrella & Alejandro 🤍");
-            const details = encodeURIComponent("Boda de Estrella & Alejandro. Recepción 19:30 Hrs. ¡Nos vemos ahí!");
-            const location = encodeURIComponent("Salón Camilas Eventos, Calz. Ventura Puente 1661, Morelia, Michoacán");
-            
-            const gCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261031T193000/20261101T010000&details=${details}&location=${location}`;
-            window.open(gCalUrl, '_blank');
+            const details = encodeURIComponent("Boda de Estrella Barajas Guzmán & Alejandro Esai Martínez Martínez. Ceremonia 17:00 Hrs. Recepción 20:00 Hrs.");
+            const location = encodeURIComponent("El Campanario, Morelia, Michoacán");
+            window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261031T170000/20261101T020000&details=${details}&location=${location}`, '_blank');
         }
 
         function toggleSettingsModal() {
@@ -1165,9 +1006,7 @@
                 document.getElementById('set-ceremony-time').value = weddingConfig.ceremonyTime;
                 document.getElementById('set-music-url').value = weddingConfig.musicUrl;
                 renderRSVPTable();
-            } else {
-                modal.classList.add('hidden');
-            }
+            } else { modal.classList.add('hidden'); }
         }
 
         function switchAdminTab(tab) {
@@ -1177,13 +1016,11 @@
             const rsvpBtn = document.getElementById('tab-btn-rsvps');
 
             if (tab === 'generator') {
-                genTab.classList.remove('hidden');
-                rsvpTab.classList.add('hidden');
+                genTab.classList.remove('hidden'); rsvpTab.classList.add('hidden');
                 genBtn.className = 'px-3 py-1.5 rounded-lg font-sans text-xs font-bold uppercase transition-all bg-neutralSage text-white';
                 rsvpBtn.className = 'px-3 py-1.5 rounded-lg font-sans text-xs font-bold uppercase transition-all bg-neutralCream/60 text-neutralDark hover:bg-neutralCream';
             } else {
-                genTab.classList.add('hidden');
-                rsvpTab.classList.remove('hidden');
+                genTab.classList.add('hidden'); rsvpTab.classList.remove('hidden');
                 genBtn.className = 'px-3 py-1.5 rounded-lg font-sans text-xs font-bold uppercase transition-all bg-neutralCream/60 text-neutralDark hover:bg-neutralCream';
                 rsvpBtn.className = 'px-3 py-1.5 rounded-lg font-sans text-xs font-bold uppercase transition-all bg-neutralSage text-white';
             }
@@ -1193,38 +1030,17 @@
             const baseUrl = window.location.origin + window.location.pathname;
             const familyName = document.getElementById('gen-family-name').value.trim();
             const passes = document.getElementById('gen-passes').value;
-            const inviteCeremony = document.getElementById('gen-ceremony').value;
             
             let queryParams = [];
+            if (familyName) queryParams.push(`n=${encodeURIComponent(familyName)}`);
+            if (passes !== "0") queryParams.push(`p=${passes}`);
             
-            if (familyName) {
-                queryParams.push(`n=${encodeURIComponent(familyName)}`);
-            }
-            if (passes !== "0") {
-                queryParams.push(`p=${passes}`);
-            }
-            if (inviteCeremony === "yes") {
-                queryParams.push(`c=1`);
-            }
+            const finalUrl = baseUrl + (queryParams.length > 0 ? `?${queryParams.join('&')}` : '');
             
-            const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : '';
-            const finalUrl = baseUrl + queryString;
-
             const input = document.createElement('input');
-            input.setAttribute('value', finalUrl);
-            document.body.appendChild(input);
-            input.select();
-            document.execCommand('copy');
-            document.body.removeChild(input);
-
-            let toastMsg = "¡Enlace copiado!";
-            if (familyName) {
-                toastMsg = `¡Copiado! Enlace personalizado para ${familyName}`;
-            } else if (passes !== "0") {
-                toastMsg = `¡Copiado! Enlace delimitado a ${passes} pases`;
-            }
-
-            showToast(toastMsg);
+            input.value = finalUrl; document.body.appendChild(input);
+            input.select(); document.execCommand('copy'); document.body.removeChild(input);
+            showToast("¡Enlace generado y copiado!");
         }
 
         function applyConfiguration() {
@@ -1235,19 +1051,10 @@
             weddingConfig.ceremonyTime = document.getElementById('set-ceremony-time').value;
             weddingConfig.musicUrl = document.getElementById('set-music-url').value;
 
-            localStorage.setItem('wedding_config_estrella_alejandro', JSON.stringify(weddingConfig));
-
-            applyConfigToUI();
-            prepareAudioSource();
-
-            if (isMusicPlaying) {
-                const musicElement = document.getElementById('bg-music');
-                musicElement.play();
-            }
-
-            initCountdown();
-            showToast("¡Configuración Guardada Exitosamente!");
-            toggleSettingsModal();
+            localStorage.setItem('wedding_config_estrella_alex', JSON.stringify(weddingConfig));
+            applyConfigToUI(); prepareAudioSource();
+            if (isMusicPlaying) document.getElementById('bg-music').play();
+            initCountdown(); showToast("¡Configuración Guardada!"); toggleSettingsModal();
         }
     </script>
 </body>
