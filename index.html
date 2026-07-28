@@ -252,7 +252,7 @@
 
         <!-- Image Separator -->
         <div class="w-full reveal -my-4 relative z-0 pointer-events-none">
-            <img src="https://i.imgur.com/4NAhDmT.jpg" alt="Separador" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
+            <img src="https://i.imgur.com/ZX8twtw.jpg" alt="Separador" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
         </div>
 
         <section class="py-16 px-6 bg-transparent text-center relative overflow-hidden reveal z-10">
@@ -1047,10 +1047,12 @@
             const baseUrl = window.location.origin + window.location.pathname;
             const familyName = document.getElementById('gen-family-name').value.trim();
             const passes = document.getElementById('gen-passes').value;
+            const kids = document.getElementById('gen-kids').value;
             
             let queryParams = [];
             if (familyName) queryParams.push(`n=${encodeURIComponent(familyName)}`);
             if (passes !== "0") queryParams.push(`p=${passes}`);
+            if (kids !== "0") queryParams.push(`pn=${kids}`);
             
             const finalUrl = baseUrl + (queryParams.length > 0 ? `?${queryParams.join('&')}` : '');
             
