@@ -496,14 +496,24 @@
                         <label for="gen-family-name" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Nombre Invitado (Opcional)</label>
                         <input type="text" id="gen-family-name" placeholder="Ej. Familia Guzmán Rubio" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
                     </div>
-                    <div>
-                        <label for="gen-passes" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Límite de Pases</label>
-                        <select id="gen-passes" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
-                            <option value="0">Estándar (1 a 5)</option>
-                            <option value="1">1 Pase</option><option value="2">2 Pases</option><option value="3">3 Pases</option>
-                            <option value="4">4 Pases</option><option value="5">5 Pases</option><option value="6">6 Pases</option>
-                            <option value="7">7 Pases</option><option value="8">8 Pases</option><option value="9">9 Pases</option><option value="10">10 Pases</option>
-                        </select>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label for="gen-passes" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Límite Adultos</label>
+                            <select id="gen-passes" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
+                                <option value="0">Estándar (1 a 5)</option>
+                                <option value="1">1 Pase</option><option value="2">2 Pases</option><option value="3">3 Pases</option>
+                                <option value="4">4 Pases</option><option value="5">5 Pases</option><option value="6">6 Pases</option>
+                                <option value="7">7 Pases</option><option value="8">8 Pases</option><option value="9">9 Pases</option><option value="10">10 Pases</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="gen-kids" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Límite Niños</label>
+                            <select id="gen-kids" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
+                                <option value="0">Sin Niños</option>
+                                <option value="1">1 Niño</option><option value="2">2 Niños</option><option value="3">3 Niños</option>
+                                <option value="4">4 Niños</option><option value="5">5 Niños</option>
+                            </select>
+                        </div>
                     </div>
                     <button onclick="generateCustomLink()" class="w-full bg-neutralSage text-white px-3 py-2.5 rounded-xl text-xs font-bold uppercase hover:bg-neutralDark transition-all flex items-center justify-center gap-2 mt-2">
                         <i class="fa-solid fa-copy"></i> Generar y Copiar
