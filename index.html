@@ -526,6 +526,14 @@
                     <select id="rsvp-guests" class="w-full px-4 py-3 rounded-xl border border-neutralSand bg-neutralWhite font-sans text-sm focus:outline-none focus:ring-2 focus:ring-neutralSage/50 focus:border-neutralSage text-neutralDark transition-all">
                     </select>
                 </div>
+                <div id="rsvp-kids-container" class="hidden">
+                    <div class="flex justify-between items-center mb-1.5">
+                        <label for="rsvp-kids" class="block font-sans text-[11px] uppercase tracking-widest text-neutralSage font-bold">Niños a Confirmar</label>
+                        <span id="kids-allocation-label" class="hidden text-[9px] uppercase bg-neutralSage/10 text-neutralSage font-bold px-2 py-0.5 rounded-full"></span>
+                    </div>
+                    <select id="rsvp-kids" class="w-full px-4 py-3 rounded-xl border border-neutralSand bg-neutralWhite font-sans text-sm focus:outline-none focus:ring-2 focus:ring-neutralSage/50 focus:border-neutralSage text-neutralDark transition-all">
+                    </select>
+                </div>
                 <button onclick="submitDirectRSVP()" id="btn-submit-rsvp" class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-neutralSage text-white font-medium text-sm tracking-wider uppercase transition-all duration-300 hover:bg-neutralDark hover:shadow-lg mt-2">
                     <i class="fa-solid fa-paper-plane text-base"></i> Enviar Confirmación
                 </button>
@@ -666,7 +674,8 @@
                             <tr>
                                 <th class="p-2.5">Nombre</th>
                                 <th class="p-2.5">Teléfono</th>
-                                <th class="p-2.5 text-center">Pases</th>
+                                <th class="p-2.5 text-center">Adultos</th>
+                                <th class="p-2.5 text-center">Niños</th>
                                 <th class="p-2.5 text-center">Ceremonia</th>
                                 <th class="p-2.5">Fecha Envío</th>
                                 <th class="p-2.5 text-center">Acción</th>
@@ -841,7 +850,7 @@
                 for (let i = 1; i <= passesLimit; i++) {
                     const opt = document.createElement('option');
                     opt.value = i;
-                    opt.textContent = `${i} ${i === 1 ? 'Pase' : 'Pases'}`;
+                    opt.textContent = `${i} ${i === 1 ? 'Adulto' : 'Adultos'}`;
                     if (i === passesLimit) opt.selected = true;
                     guestsSelect.appendChild(opt);
                 }
@@ -851,10 +860,33 @@
                 }
             } else {
                 guestsSelect.innerHTML = `
-                    <option value="1">1 Pase</option><option value="2" selected>2 Pases</option>
-                    <option value="3">3 Pases</option><option value="4">4 Pases</option><option value="5">5 Pases</option>
+                    <option value="1">1 Adulto</option><option value="2" selected>2 Adultos</option>
+                    <option value="3">3 Adultos</option><option value="4">4 Adultos</option><option value="5">5 Adultos</option>
                 `;
                 if (passesLabel) passesLabel.classList.add('hidden');
+            }
+
+            const kidsLimit = parseInt(urlParams.get('pn'));
+            const kidsContainer = document.getElementById('rsvp-kids-container');
+            const kidsSelect = document.getElementById('rsvp-kids');
+            const kidsLabel = document.getElementById('kids-allocation-label');
+
+            if (!isNaN(kidsLimit) && kidsLimit > 0) {
+                kidsContainer.classList.remove('hidden');
+                kidsSelect.innerHTML = '<option value="0">0 Niños</option>';
+                for (let i = 1; i <= kidsLimit; i++) {
+                    const opt = document.createElement('option');
+                    opt.value = i;
+                    opt.textContent = `${i} ${i === 1 ? 'Niño' : 'Niños'}`;
+                    if (i === kidsLimit) opt.selected = true;
+                    kidsSelect.appendChild(opt);
+                }
+                if (kidsLabel) {
+                    kidsLabel.textContent = `Tienes ${kidsLimit} ${kidsLimit === 1 ? 'pase infantil' : 'pases infantiles'}`;
+                    kidsLabel.classList.remove('hidden');
+                }
+            } else {
+                kidsContainer.classList.add('hidden');
             }
 
             const hasConfirmed = localStorage.getItem('wedding_rsvp_submitted_estrella_alex');
@@ -1025,6 +1057,12 @@
             const name = document.getElementById('rsvp-name').value.trim();
             const phone = document.getElementById('rsvp-phone').value.trim();
             const guests = document.getElementById('rsvp-guests').value;
+            
+            const kidsContainer = document.getElementById('rsvp-kids-container');
+            let kids = 0;
+            if (!kidsContainer.classList.contains('hidden')) {
+                kids = document.getElementById('rsvp-kids').value;
+            }
 
             if (!name || !phone || phone.length < 8) {
                 showToast("Por favor, llena correctamente tus datos.");
@@ -1034,7 +1072,7 @@
             const includesCeremony = 'Sí';
 
             const newRecord = {
-                id: Date.now(), name: name, phone: phone, passes: parseInt(guests),
+                id: Date.now(), name: name, phone: phone, passes: parseInt(guests), kids: parseInt(kids),
                 ceremony: includesCeremony, date: new Date().toLocaleString('es-MX')
             };
 
@@ -1065,18 +1103,21 @@
             if (!tbody) return;
             tbody.innerHTML = '';
             let sumPasses = 0;
+            let sumKids = 0;
 
             if (rsvpList.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-neutralDark/50 italic">No hay confirmaciones registradas aún.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-neutralDark/50 italic">No hay confirmaciones registradas aún.</td></tr>`;
             } else {
                 rsvpList.forEach((item, index) => {
                     sumPasses += (item.passes || 0);
+                    sumKids += (item.kids || 0);
                     const tr = document.createElement('tr');
                     tr.className = index % 2 === 0 ? 'bg-white' : 'bg-neutralCream/20';
                     tr.innerHTML = `
                         <td class="p-2.5 font-semibold">${item.name}</td>
                         <td class="p-2.5">${item.phone}</td>
                         <td class="p-2.5 text-center font-bold text-neutralSage">${item.passes}</td>
+                        <td class="p-2.5 text-center font-bold text-neutralSand">${item.kids || 0}</td>
                         <td class="p-2.5 text-center">${item.ceremony === 'Sí' ? '✨ Sí' : 'No'}</td>
                         <td class="p-2.5 text-[10px] text-neutralDark/70">${item.date}</td>
                         <td class="p-2.5 text-center">
@@ -1089,7 +1130,7 @@
 
             document.getElementById('rsvp-count-badge').innerText = rsvpList.length;
             document.getElementById('summary-total-records').innerText = rsvpList.length;
-            document.getElementById('summary-total-passes').innerText = sumPasses;
+            document.getElementById('summary-total-passes').innerText = `${sumPasses} Adultos | ${sumKids} Niños`;
         }
 
         function deleteRSVPRecord(id) {
@@ -1104,11 +1145,11 @@
 
         function exportRSVPToCSV() {
             if (rsvpList.length === 0) { showToast("No hay datos."); return; }
-            let csvContent = "\uFEFFNombre Completo,Telefono,Pases Confirmados,Invita Ceremonia,Fecha de Registro\n";
+            let csvContent = "\uFEFFNombre Completo,Telefono,Adultos Confirmados,Niños Confirmados,Invita Ceremonia,Fecha de Registro\n";
             rsvpList.forEach(item => {
                 const safeName = `"${item.name.replace(/"/g, '""')}"`;
                 const safePhone = `"${item.phone.replace(/"/g, '""')}"`;
-                csvContent += `${safeName},${safePhone},${item.passes},${item.ceremony},"${item.date}"\n`;
+                csvContent += `${safeName},${safePhone},${item.passes},${item.kids || 0},${item.ceremony},"${item.date}"\n`;
             });
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement("a");
