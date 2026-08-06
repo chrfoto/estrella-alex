@@ -71,7 +71,7 @@
         
         .textured-bg {
             background-image: 
-                linear-gradient(rgba(251, 251, 250, 0.72), rgba(251, 251, 250, 0.72)), 
+                linear-gradient(rgba(251, 251, 250, 0.65), rgba(251, 251, 250, 0.65)), 
                 url('https://i.imgur.com/HokgcoD.jpg'),
                 url('https://i.imgur.com/HokgcoD.jpg');
             background-repeat: repeat;
@@ -178,10 +178,9 @@
             </div>
         </section>
 
-        <section id="countdown-section" class="relative py-16 px-6 text-center overflow-hidden reveal">
-            <div class="absolute inset-0 z-0 pointer-events-none" style="background-image: url('https://i.imgur.com/r3p1Cr7.jpg'); background-size: cover; background-position: center; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
-                <div class="absolute inset-0 bg-neutralCream/45 backdrop-blur-[2px]"></div>
-            </div>
+        <!-- Sección de Cuenta Regresiva -->
+        <section id="countdown-section" class="relative pt-16 pb-8 px-6 text-center overflow-hidden reveal z-10" style="background-image: url('https://i.imgur.com/r3p1Cr7.jpg'); background-size: cover; background-position: center; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%, transparent 100%);">
+            <div class="absolute inset-0 bg-neutralCream/45 backdrop-blur-[2px]"></div>
             
             <div class="relative z-10">
                 <h3 class="font-serifTitle text-xs tracking-[0.25em] text-neutralSage uppercase mb-6 font-bold drop-shadow-md">Faltan Sólo</h3>
@@ -205,13 +204,13 @@
                     </div>
                 </div>
 
-                <p id="wedding-date-display" class="font-serifTitle text-lg text-neutralDark tracking-wider mt-5 font-semibold drop-shadow-sm">
+                <p id="wedding-date-display" class="font-serifTitle text-lg text-neutralWhite tracking-wider mt-5 font-semibold drop-shadow-md">
                     Sábado, 31 de Octubre de 2026
                 </p>
             </div>
         </section>
 
-        <!-- Image Separator -->
+        <!-- Imagen de Romance con transición suave hacia arriba -->
         <div class="w-full reveal -mt-12 -mb-4 relative z-0 pointer-events-none">
             <img src="https://i.imgur.com/QYluhgM.jpg" alt="Romance" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
         </div>
@@ -250,7 +249,7 @@
             </div>
         </section>
 
-        <!-- Image Separator -->
+        <!-- Imagen de transición vertical sin recortes -->
         <div class="w-full reveal -my-4 relative z-0 pointer-events-none">
             <img src="https://i.imgur.com/ZX8twtw.jpg" alt="Separador" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
         </div>
@@ -312,9 +311,9 @@
             </div>
         </section>
 
-        <!-- Image Separator -->
+        <!-- Imagen de transición vertical sin recortes -->
         <div class="w-full reveal -my-4 relative z-0 pointer-events-none">
-            <img src="https://i.imgur.com/3Gr48G6.jpg" alt="Separador" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
+            <img src="https://i.imgur.com/Bel7cOH.jpg" alt="Separador" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
         </div>
 
         <section class="py-16 px-8 bg-transparent relative reveal z-10">
@@ -397,9 +396,9 @@
             </div>
         </section>
 
-        <!-- Image Separator -->
+        <!-- Imagen de transición vertical sin recortes -->
         <div class="w-full reveal -my-4 relative z-0 pointer-events-none">
-            <img src="https://i.imgur.com/Bel7cOH.jpg" alt="Separador" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
+            <img src="https://i.imgur.com/RnTV7MN.jpg" alt="Separador" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
         </div>
 
         <section class="py-16 px-6 bg-transparent text-center relative reveal z-10">
@@ -489,7 +488,7 @@
             </div>
         </section>
 
-        <!-- Image Separator -->
+        <!-- Imagen de transición vertical sin recortes -->
         <div class="w-full reveal -my-4 relative z-0 pointer-events-none">
             <img src="https://i.imgur.com/c1aYtCt.jpg" alt="Separador" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
         </div>
@@ -518,14 +517,16 @@
                     <input type="tel" id="rsvp-phone" placeholder="Ej. 443 123 4567" 
                            class="w-full px-4 py-3 rounded-xl border border-neutralSand bg-neutralWhite font-sans text-sm focus:outline-none focus:ring-2 focus:ring-neutralSage/50 focus:border-neutralSage text-neutralDark transition-all">
                 </div>
+                
                 <div>
                     <div class="flex justify-between items-center mb-1.5">
-                        <label for="rsvp-guests" class="block font-sans text-[11px] uppercase tracking-widest text-neutralSage font-bold">Número de Pases a Confirmar</label>
+                        <label for="rsvp-guests" class="block font-sans text-[11px] uppercase tracking-widest text-neutralSage font-bold">Adultos a Confirmar</label>
                         <span id="passes-allocation-label" class="hidden text-[9px] uppercase bg-neutralSage/10 text-neutralSage font-bold px-2 py-0.5 rounded-full"></span>
                     </div>
                     <select id="rsvp-guests" class="w-full px-4 py-3 rounded-xl border border-neutralSand bg-neutralWhite font-sans text-sm focus:outline-none focus:ring-2 focus:ring-neutralSage/50 focus:border-neutralSage text-neutralDark transition-all">
                     </select>
                 </div>
+
                 <div id="rsvp-kids-container" class="hidden">
                     <div class="flex justify-between items-center mb-1.5">
                         <label for="rsvp-kids" class="block font-sans text-[11px] uppercase tracking-widest text-neutralSage font-bold">Niños a Confirmar</label>
@@ -534,6 +535,7 @@
                     <select id="rsvp-kids" class="w-full px-4 py-3 rounded-xl border border-neutralSand bg-neutralWhite font-sans text-sm focus:outline-none focus:ring-2 focus:ring-neutralSage/50 focus:border-neutralSage text-neutralDark transition-all">
                     </select>
                 </div>
+
                 <button onclick="submitDirectRSVP()" id="btn-submit-rsvp" class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-neutralSage text-white font-medium text-sm tracking-wider uppercase transition-all duration-300 hover:bg-neutralDark hover:shadow-lg mt-2">
                     <i class="fa-solid fa-paper-plane text-base"></i> Enviar Confirmación
                 </button>
@@ -545,7 +547,7 @@
                 </div>
                 <h4 class="font-serifTitle text-xl text-neutralDark font-bold">¡Confirmación Recibida!</h4>
                 <p id="rsvp-success-msg" class="font-serifBody text-base text-neutralDark/80 leading-relaxed">
-                    Muchas gracias por registrar tus datos. Tu asistencia ha quedado guardada.
+                    Muchas gracias por registrar tus datos. Tu asistencia ha quedado guardada en nuestra lista.
                 </p>
             </div>
         </section>
@@ -661,7 +663,7 @@
                     <div>
                         <p class="font-sans text-xs font-bold text-neutralDark">Resumen de Asistencia</p>
                         <p class="font-sans text-[10px] text-neutralDark/70 mt-0.5">
-                            Total Registros: <strong id="summary-total-records">0</strong> | Total Pases Solic.: <strong id="summary-total-passes">0</strong>
+                            Total Registros: <strong id="summary-total-records">0</strong> | Solic.: <strong id="summary-total-passes">0</strong>
                         </p>
                     </div>
                     <button onclick="exportRSVPToCSV()" class="bg-neutralSage text-white px-3 py-2 rounded-xl text-xs font-bold uppercase hover:bg-neutralDark transition-all flex items-center gap-1.5 shadow-sm">
@@ -716,6 +718,7 @@
                 "https://i.imgur.com/GW3trAY.jpg",
                 "https://i.imgur.com/98sQTie.jpg",
                 "https://i.imgur.com/xs2heaC.jpg",
+                "https://i.imgur.com/QYluhgM.jpg",
                 "https://i.imgur.com/xMqPqPV.jpg",
                 "https://i.imgur.com/LR1q66t.jpg"
             ]
