@@ -179,7 +179,7 @@
         </section>
 
         <!-- Sección de Cuenta Regresiva -->
-        <section id="countdown-section" class="relative pt-16 pb-8 px-6 text-center overflow-hidden reveal z-10" style="background-image: url('https://i.imgur.com/r3p1Cr7.jpg'); background-size: cover; background-position: center; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 100%, transparent 100%);">
+        <section id="countdown-section" class="relative pt-16 pb-20 px-6 text-center overflow-hidden reveal z-10" style="background-image: url('https://i.imgur.com/r3p1Cr7.jpg'); background-size: cover; background-position: center; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
             <div class="absolute inset-0 bg-neutralCream/45 backdrop-blur-[2px]"></div>
             
             <div class="relative z-10">
@@ -211,8 +211,8 @@
         </section>
 
         <!-- Imagen de Romance con transición suave hacia arriba -->
-        <div class="w-full reveal -mt-12 -mb-4 relative z-0 pointer-events-none">
-            <img src="https://i.imgur.com/QYluhgM.jpg" alt="Romance" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);">
+        <div class="w-full reveal -mt-24 -mb-4 relative z-0 pointer-events-none">
+            <img src="https://i.imgur.com/QYluhgM.jpg" alt="Romance" class="w-full h-auto block" style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);">
         </div>
 
         <section class="py-16 px-8 text-center bg-transparent relative reveal z-10">
@@ -602,9 +602,9 @@
                             <label for="gen-passes" class="block font-sans text-[9px] uppercase text-neutralDark/60 font-semibold mb-1">Límite Adultos</label>
                             <select id="gen-passes" class="w-full px-3 py-2 rounded-xl border border-neutralSand font-sans text-xs bg-neutralWhite text-neutralDark">
                                 <option value="0">Estándar (1 a 5)</option>
-                                <option value="1">1 Pase</option><option value="2">2 Pases</option><option value="3">3 Pases</option>
-                                <option value="4">4 Pases</option><option value="5">5 Pases</option><option value="6">6 Pases</option>
-                                <option value="7">7 Pases</option><option value="8">8 Pases</option><option value="9">9 Pases</option><option value="10">10 Pases</option>
+                                <option value="1">1 Adulto</option><option value="2">2 Adultos</option><option value="3">3 Adultos</option>
+                                <option value="4">4 Adultos</option><option value="5">5 Adultos</option><option value="6">6 Adultos</option>
+                                <option value="7">7 Adultos</option><option value="8">8 Adultos</option><option value="9">9 Adultos</option><option value="10">10 Adultos</option>
                             </select>
                         </div>
                         <div>
@@ -667,7 +667,7 @@
                         </p>
                     </div>
                     <button onclick="exportRSVPToCSV()" class="bg-neutralSage text-white px-3 py-2 rounded-xl text-xs font-bold uppercase hover:bg-neutralDark transition-all flex items-center gap-1.5 shadow-sm">
-                        <i class="fa-solid fa-file-excel"></i> Descargar Excel (CSV)
+                        <i class="fa-solid fa-file-excel"></i> Excel (CSV)
                     </button>
                 </div>
                 <div class="border border-neutralSand/50 rounded-2xl overflow-x-auto max-h-60 bg-neutralWhite">
@@ -690,14 +690,33 @@
                     <button onclick="clearAllRSVPs()" class="text-[10px] text-red-500 hover:text-red-700 font-bold uppercase underline">
                         Borrar todas las confirmaciones
                     </button>
-                    <span class="text-[9px] text-neutralDark/50 uppercase tracking-widest">Sincronizado Local</span>
+                    <span class="text-[9px] text-neutralSage uppercase tracking-widest font-bold"><i class="fa-solid fa-cloud"></i> Sincronizado en Nube</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        let weddingConfig = {
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Configuración oficial de tu base de datos Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCMJCmXlUOdHJPWJCqcUH0Xx5uFvRaZOaY",
+            authDomain: "estrellalex-edf14.firebaseapp.com",
+            projectId: "estrellalex-edf14",
+            storageBucket: "estrellalex-edf14.firebasestorage.app",
+            messagingSenderId: "1087913983282",
+            appId: "1:1087913983282:web:beb31aba767bf4aee4ab2b"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        // Identificador de la app para asegurar la ruta de la base de datos
+        const appId = typeof __app_id !== 'undefined' ? __app_id : "estrellalex-edf14";
+
+        window.weddingConfig = {
             weddingDate: "2026-10-31T17:00:00",
             rsvpDeadline: "2026-08-31",
             rsvpPhone: "4431011723",
@@ -707,32 +726,37 @@
             ceremonyVenue: "Santuario de El Santo Niño de La Salud",
             ceremonyTime: "17:00 Horas",
             galleryImages: [
-                "https://i.imgur.com/67QqQ7a.jpg",
-                "https://i.imgur.com/0RZqLg2.jpg",
-                "https://i.imgur.com/kFlLJtK.jpg",
-                "https://i.imgur.com/7fjofjo.jpg",
-                "https://i.imgur.com/SjeqHSd.jpg",
-                "https://i.imgur.com/ZX8twtw.jpg",
-                "https://i.imgur.com/YPRpAJg.jpg",
-                "https://i.imgur.com/ioqcLqJ.jpg",
-                "https://i.imgur.com/GW3trAY.jpg",
-                "https://i.imgur.com/98sQTie.jpg",
-                "https://i.imgur.com/xs2heaC.jpg",
-                "https://i.imgur.com/QYluhgM.jpg",
-                "https://i.imgur.com/xMqPqPV.jpg",
-                "https://i.imgur.com/LR1q66t.jpg"
+                "https://i.imgur.com/67QqQ7a.jpg", "https://i.imgur.com/0RZqLg2.jpg", "https://i.imgur.com/kFlLJtK.jpg",
+                "https://i.imgur.com/7fjofjo.jpg", "https://i.imgur.com/SjeqHSd.jpg", "https://i.imgur.com/ZX8twtw.jpg",
+                "https://i.imgur.com/YPRpAJg.jpg", "https://i.imgur.com/ioqcLqJ.jpg", "https://i.imgur.com/GW3trAY.jpg",
+                "https://i.imgur.com/98sQTie.jpg", "https://i.imgur.com/xs2heaC.jpg", "https://i.imgur.com/QYluhgM.jpg",
+                "https://i.imgur.com/xMqPqPV.jpg", "https://i.imgur.com/LR1q66t.jpg"
             ]
         };
 
+        window.rsvpList = [];
         let countdownInterval;
         let isMusicPlaying = false;
         let currentGalleryIndex = 0;
-        const totalGallerySlides = weddingConfig.galleryImages.length; 
-        let rsvpList = [];
+        const totalGallerySlides = window.weddingConfig.galleryImages.length; 
+
+        // Enlazar las funciones al objeto global 'window' para que el HTML pueda acceder a ellas
+        window.openInvitation = openInvitation;
+        window.toggleMusic = toggleMusic;
+        window.addToCalendar = addToCalendar;
+        window.copyToClipboard = copyToClipboard;
+        window.toggleSettingsModal = toggleSettingsModal;
+        window.switchAdminTab = switchAdminTab;
+        window.generateCustomLink = generateCustomLink;
+        window.applyConfiguration = applyConfiguration;
+        window.openLightbox = openLightbox;
+        window.closeLightbox = closeLightbox;
+        window.prevGallerySlide = prevGallerySlide;
+        window.nextGallerySlide = nextGallerySlide;
 
         window.addEventListener('DOMContentLoaded', () => {
             loadSavedSettings();
-            loadSavedRSVPs();
+            window.loadSavedRSVPs(); // Conectamos directo a Firestore
             initLeaves();
             initCountdown();
             checkGuestParameters();
@@ -741,6 +765,95 @@
             initRevealAnimations();
             buildGallery();
         });
+
+        window.submitDirectRSVP = async function() {
+            const name = document.getElementById('rsvp-name').value.trim();
+            const phone = document.getElementById('rsvp-phone').value.trim();
+            const guests = document.getElementById('rsvp-guests').value;
+            
+            const kidsContainer = document.getElementById('rsvp-kids-container');
+            let kids = 0;
+            if (!kidsContainer.classList.contains('hidden')) {
+                kids = document.getElementById('rsvp-kids').value;
+            }
+
+            if (!name || !phone || phone.length < 8) {
+                showToast("Por favor, llena correctamente tus datos.");
+                return;
+            }
+
+            // Crear el nuevo registro (sin ID, Firebase lo genera)
+            const newRecord = {
+                name: name,
+                phone: phone,
+                passes: parseInt(guests) || 0,
+                kids: parseInt(kids) || 0,
+                ceremony: 'Sí',
+                date: new Date().toLocaleString('es-MX'),
+                timestamp: Date.now()
+            };
+
+            try {
+                const btnSubmit = document.getElementById('btn-submit-rsvp');
+                btnSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Guardando...';
+                btnSubmit.disabled = true;
+
+                // Guardar en Firestore
+                const rsvpRef = collection(db, 'artifacts', appId, 'public', 'data', 'rsvps');
+                await addDoc(rsvpRef, newRecord);
+
+                localStorage.setItem('wedding_rsvp_submitted_estrella_alex', 'true');
+                document.getElementById('rsvp-form-card').classList.add('hidden');
+                document.getElementById('rsvp-success-card').classList.remove('hidden');
+                showToast("¡Confirmación Registrada!");
+            } catch (e) {
+                console.error("Error añadiendo el registro: ", e);
+                showToast("Hubo un error al guardar. Intenta nuevamente.");
+                document.getElementById('btn-submit-rsvp').innerHTML = '<i class="fa-solid fa-paper-plane text-base"></i> Enviar Confirmación';
+                document.getElementById('btn-submit-rsvp').disabled = false;
+            }
+        };
+
+        window.loadSavedRSVPs = function() {
+            // Escuchar cambios en tiempo real desde Firestore
+            const rsvpRef = collection(db, 'artifacts', appId, 'public', 'data', 'rsvps');
+            onSnapshot(rsvpRef, (snapshot) => {
+                window.rsvpList = [];
+                snapshot.forEach((docSnap) => {
+                    window.rsvpList.push({ id: docSnap.id, ...docSnap.data() });
+                });
+                
+                // Ordenar por más recientes primero
+                window.rsvpList.sort((a, b) => b.timestamp - a.timestamp);
+                renderRSVPTable();
+            }, (error) => {
+                console.error("Error leyendo desde Firestore:", error);
+            });
+        };
+
+        window.deleteRSVPRecord = async function(id) {
+            try {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'rsvps', id));
+                showToast("Registro eliminado");
+            } catch (e) {
+                console.error("Error eliminando registro: ", e);
+            }
+        };
+
+        window.clearAllRSVPs = async function() {
+            if (!confirm("¿Estás seguro de borrar todos los registros permanentemente?")) return;
+            
+            try {
+                const rsvpRef = collection(db, 'artifacts', appId, 'public', 'data', 'rsvps');
+                const snapshot = await getDocs(rsvpRef);
+                snapshot.forEach(async (document) => {
+                    await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'rsvps', document.id));
+                });
+                showToast("Registros borrados");
+            } catch (e) {
+                console.error("Error al borrar todo: ", e);
+            }
+        };
 
         function getCleanAudioUrl(rawUrl) {
             if (rawUrl.includes("dropbox.com")) {
@@ -754,7 +867,7 @@
 
         function prepareAudioSource() {
             const audioSource = document.getElementById('audio-source');
-            audioSource.src = getCleanAudioUrl(weddingConfig.musicUrl);
+            audioSource.src = getCleanAudioUrl(window.weddingConfig.musicUrl);
             document.getElementById('bg-music').load();
         }
 
@@ -777,7 +890,7 @@
         function buildGallery() {
             const container = document.getElementById('gallery-carousel');
             container.innerHTML = '';
-            weddingConfig.galleryImages.forEach((src, i) => {
+            window.weddingConfig.galleryImages.forEach((src, i) => {
                 const img = document.createElement('img');
                 img.id = `gallery-img-${i}`;
                 img.src = src;
@@ -792,9 +905,9 @@
             currentGalleryIndex = index;
             const lightbox = document.getElementById('lightbox-modal');
             const lightboxImg = document.getElementById('lightbox-img');
-            lightboxImg.src = weddingConfig.galleryImages[index];
+            lightboxImg.src = window.weddingConfig.galleryImages[index];
             lightbox.classList.remove('hidden');
-            void lightbox.offsetWidth; // Trigger reflow
+            void lightbox.offsetWidth;
             lightbox.classList.remove('opacity-0');
             lightbox.classList.add('opacity-100');
         }
@@ -813,7 +926,7 @@
             if (savedData) {
                 try {
                     const parsed = JSON.parse(savedData);
-                    weddingConfig = { ...weddingConfig, ...parsed };
+                    window.weddingConfig = { ...window.weddingConfig, ...parsed };
                 } catch(e) {
                     console.error("Error loading config", e);
                 }
@@ -823,22 +936,22 @@
 
         function applyConfigToUI() {
             const dOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const safeWeddingStr = weddingConfig.weddingDate.replace(/-/g, '/').replace('T', ' ');
+            const safeWeddingStr = window.weddingConfig.weddingDate.replace(/-/g, '/').replace('T', ' ');
             const parsedWedding = new Date(safeWeddingStr);
             document.getElementById('wedding-date-display').innerText = parsedWedding.toLocaleDateString('es-ES', dOptions);
 
-            const safeDeadlineStr = weddingConfig.rsvpDeadline.replace(/-/g, '/');
+            const safeDeadlineStr = window.weddingConfig.rsvpDeadline.replace(/-/g, '/');
             const parsedDeadline = new Date(safeDeadlineStr);
             document.getElementById('rsvp-deadline-text').innerText = parsedDeadline.toLocaleDateString('es-ES', dOptions);
 
-            document.getElementById('ceremony-venue-display').innerText = weddingConfig.ceremonyVenue;
-            document.getElementById('ceremony-time-display').innerText = weddingConfig.ceremonyTime;
+            document.getElementById('ceremony-venue-display').innerText = window.weddingConfig.ceremonyVenue;
+            document.getElementById('ceremony-time-display').innerText = window.weddingConfig.ceremonyTime;
         }
 
         function checkGuestParameters() {
             const urlParams = new URLSearchParams(window.location.search);
-
             const familyName = urlParams.get('n') || urlParams.get('nombre');
+            
             if (familyName) {
                 const nameInput = document.getElementById('rsvp-name');
                 if (nameInput) nameInput.value = familyName;
@@ -947,7 +1060,7 @@
             setTimeout(() => envelope.classList.add('hidden'), 1000);
 
             const music = document.getElementById('bg-music');
-            music.src = getCleanAudioUrl(weddingConfig.musicUrl);
+            music.src = getCleanAudioUrl(window.weddingConfig.musicUrl);
             music.currentTime = 0; 
             music.volume = 0; 
 
@@ -981,7 +1094,7 @@
             const minsElem = document.getElementById('countdown-minutes');
             const secsElem = document.getElementById('countdown-seconds');
 
-            const safeWeddingStr = weddingConfig.weddingDate.replace(/-/g, '/').replace('T', ' ');
+            const safeWeddingStr = window.weddingConfig.weddingDate.replace(/-/g, '/').replace('T', ' ');
             const targetDate = new Date(safeWeddingStr).getTime();
 
             function updateTimer() {
@@ -1056,51 +1169,6 @@
             }, 3000);
         }
 
-        function submitDirectRSVP() {
-            const name = document.getElementById('rsvp-name').value.trim();
-            const phone = document.getElementById('rsvp-phone').value.trim();
-            const guests = document.getElementById('rsvp-guests').value;
-            
-            const kidsContainer = document.getElementById('rsvp-kids-container');
-            let kids = 0;
-            if (!kidsContainer.classList.contains('hidden')) {
-                kids = document.getElementById('rsvp-kids').value;
-            }
-
-            if (!name || !phone || phone.length < 8) {
-                showToast("Por favor, llena correctamente tus datos.");
-                return;
-            }
-
-            const includesCeremony = 'Sí';
-
-            const newRecord = {
-                id: Date.now(), name: name, phone: phone, passes: parseInt(guests), kids: parseInt(kids),
-                ceremony: includesCeremony, date: new Date().toLocaleString('es-MX')
-            };
-
-            rsvpList.push(newRecord);
-            saveRSVPsToStorage();
-            localStorage.setItem('wedding_rsvp_submitted_estrella_alex', 'true');
-
-            document.getElementById('rsvp-form-card').classList.add('hidden');
-            document.getElementById('rsvp-success-card').classList.remove('hidden');
-            showToast("¡Confirmación Registrada!");
-        }
-
-        function loadSavedRSVPs() {
-            const stored = localStorage.getItem('wedding_rsvps_list_estrella_alex');
-            if (stored) {
-                try { rsvpList = JSON.parse(stored); } catch(e) { rsvpList = []; }
-            }
-            renderRSVPTable();
-        }
-
-        function saveRSVPsToStorage() {
-            localStorage.setItem('wedding_rsvps_list_estrella_alex', JSON.stringify(rsvpList));
-            renderRSVPTable();
-        }
-
         function renderRSVPTable() {
             const tbody = document.getElementById('rsvp-table-body');
             if (!tbody) return;
@@ -1108,14 +1176,16 @@
             let sumPasses = 0;
             let sumKids = 0;
 
-            if (rsvpList.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-neutralDark/50 italic">No hay confirmaciones registradas aún.</td></tr>`;
+            if (window.rsvpList.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-neutralDark/50 italic">No hay confirmaciones en la base de datos.</td></tr>`;
             } else {
-                rsvpList.forEach((item, index) => {
+                window.rsvpList.forEach((item, index) => {
                     sumPasses += (item.passes || 0);
                     sumKids += (item.kids || 0);
                     const tr = document.createElement('tr');
                     tr.className = index % 2 === 0 ? 'bg-white' : 'bg-neutralCream/20';
+                    
+                    // Asegurarse de encapsular el id de Firestore en comillas simples para la llamada onclick
                     tr.innerHTML = `
                         <td class="p-2.5 font-semibold">${item.name}</td>
                         <td class="p-2.5">${item.phone}</td>
@@ -1124,32 +1194,22 @@
                         <td class="p-2.5 text-center">${item.ceremony === 'Sí' ? '✨ Sí' : 'No'}</td>
                         <td class="p-2.5 text-[10px] text-neutralDark/70">${item.date}</td>
                         <td class="p-2.5 text-center">
-                            <button onclick="deleteRSVPRecord(${item.id})" class="text-red-400 hover:text-red-600 p-1" title="Eliminar"><i class="fa-solid fa-trash-can"></i></button>
+                            <button onclick="deleteRSVPRecord('${item.id}')" class="text-red-400 hover:text-red-600 p-1" title="Eliminar"><i class="fa-solid fa-trash-can"></i></button>
                         </td>
                     `;
                     tbody.appendChild(tr);
                 });
             }
 
-            document.getElementById('rsvp-count-badge').innerText = rsvpList.length;
-            document.getElementById('summary-total-records').innerText = rsvpList.length;
+            document.getElementById('rsvp-count-badge').innerText = window.rsvpList.length;
+            document.getElementById('summary-total-records').innerText = window.rsvpList.length;
             document.getElementById('summary-total-passes').innerText = `${sumPasses} Adultos | ${sumKids} Niños`;
         }
 
-        function deleteRSVPRecord(id) {
-            rsvpList = rsvpList.filter(item => item.id !== id);
-            saveRSVPsToStorage(); showToast("Registro eliminado");
-        }
-
-        function clearAllRSVPs() {
-            if (rsvpList.length === 0) return;
-            rsvpList = []; saveRSVPsToStorage(); showToast("Registros borrados");
-        }
-
-        function exportRSVPToCSV() {
-            if (rsvpList.length === 0) { showToast("No hay datos."); return; }
+        window.exportRSVPToCSV = function() {
+            if (window.rsvpList.length === 0) { showToast("No hay datos."); return; }
             let csvContent = "\uFEFFNombre Completo,Telefono,Adultos Confirmados,Niños Confirmados,Invita Ceremonia,Fecha de Registro\n";
-            rsvpList.forEach(item => {
+            window.rsvpList.forEach(item => {
                 const safeName = `"${item.name.replace(/"/g, '""')}"`;
                 const safePhone = `"${item.phone.replace(/"/g, '""')}"`;
                 csvContent += `${safeName},${safePhone},${item.passes},${item.kids || 0},${item.ceremony},"${item.date}"\n`;
@@ -1159,7 +1219,7 @@
             link.href = URL.createObjectURL(blob);
             link.download = `Confirmaciones_Estrella_Alejandro_${new Date().toISOString().slice(0,10)}.csv`;
             link.click();
-        }
+        };
 
         function addToCalendar() {
             const title = encodeURIComponent("Boda de Estrella & Alejandro 🤍");
@@ -1172,12 +1232,12 @@
             const modal = document.getElementById('settings-modal');
             if (modal.classList.contains('hidden')) {
                 modal.classList.remove('hidden');
-                document.getElementById('set-wedding-date').value = weddingConfig.weddingDate.substring(0, 16);
-                document.getElementById('set-rsvp-deadline').value = weddingConfig.rsvpDeadline;
-                document.getElementById('set-rsvp-phone').value = weddingConfig.rsvpPhone;
-                document.getElementById('set-ceremony-venue').value = weddingConfig.ceremonyVenue;
-                document.getElementById('set-ceremony-time').value = weddingConfig.ceremonyTime;
-                document.getElementById('set-music-url').value = weddingConfig.musicUrl;
+                document.getElementById('set-wedding-date').value = window.weddingConfig.weddingDate.substring(0, 16);
+                document.getElementById('set-rsvp-deadline').value = window.weddingConfig.rsvpDeadline;
+                document.getElementById('set-rsvp-phone').value = window.weddingConfig.rsvpPhone;
+                document.getElementById('set-ceremony-venue').value = window.weddingConfig.ceremonyVenue;
+                document.getElementById('set-ceremony-time').value = window.weddingConfig.ceremonyTime;
+                document.getElementById('set-music-url').value = window.weddingConfig.musicUrl;
                 renderRSVPTable();
             } else { modal.classList.add('hidden'); }
         }
@@ -1219,14 +1279,14 @@
         }
 
         function applyConfiguration() {
-            weddingConfig.weddingDate = document.getElementById('set-wedding-date').value;
-            weddingConfig.rsvpDeadline = document.getElementById('set-rsvp-deadline').value;
-            weddingConfig.rsvpPhone = document.getElementById('set-rsvp-phone').value;
-            weddingConfig.ceremonyVenue = document.getElementById('set-ceremony-venue').value;
-            weddingConfig.ceremonyTime = document.getElementById('set-ceremony-time').value;
-            weddingConfig.musicUrl = document.getElementById('set-music-url').value;
+            window.weddingConfig.weddingDate = document.getElementById('set-wedding-date').value;
+            window.weddingConfig.rsvpDeadline = document.getElementById('set-rsvp-deadline').value;
+            window.weddingConfig.rsvpPhone = document.getElementById('set-rsvp-phone').value;
+            window.weddingConfig.ceremonyVenue = document.getElementById('set-ceremony-venue').value;
+            window.weddingConfig.ceremonyTime = document.getElementById('set-ceremony-time').value;
+            window.weddingConfig.musicUrl = document.getElementById('set-music-url').value;
 
-            localStorage.setItem('wedding_config_estrella_alex', JSON.stringify(weddingConfig));
+            localStorage.setItem('wedding_config_estrella_alex', JSON.stringify(window.weddingConfig));
             applyConfigToUI(); prepareAudioSource();
             if (isMusicPlaying) document.getElementById('bg-music').play();
             initCountdown(); showToast("¡Configuración Guardada!"); toggleSettingsModal();
