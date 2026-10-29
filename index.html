@@ -288,7 +288,8 @@
                     Recepción y Fiesta
                 </div>
                 <div>
-                    <h4 class="font-serifTitle text-xl text-neutralDark font-bold">El Campanario</h4>
+                    <!-- ACTUALIZADO: Nombre del lugar -->
+                    <h4 class="font-serifTitle text-xl text-neutralDark font-bold">Salón Quinta Victoria</h4>
                     <div class="w-12 h-[1px] bg-neutralRose mx-auto my-3"></div>
                     <p class="font-sans text-sm text-neutralDark/80 font-medium">
                         Morelia, Michoacán
@@ -301,7 +302,8 @@
                 </div>
 
                 <div class="flex flex-col sm:flex-row gap-3 justify-center pt-2">
-                    <a href="https://maps.app.goo.gl/DGtvMqGihj5sZXn48?g_st=iw" target="_blank" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-neutralSage text-white font-medium text-xs tracking-wider uppercase transition-all duration-300 hover:bg-neutralDark hover:shadow-md">
+                    <!-- ACTUALIZADO: Enlace de Google Maps -->
+                    <a href="https://maps.app.goo.gl/ke6J4BxUoeYyBTXWA" target="_blank" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-neutralSage text-white font-medium text-xs tracking-wider uppercase transition-all duration-300 hover:bg-neutralDark hover:shadow-md">
                         <i class="fa-solid fa-map-location-dot"></i> Ver Ubicación
                     </a>
                     <button onclick="addToCalendar()" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full border border-neutralSage text-neutralSage font-medium text-xs tracking-wider uppercase transition-all duration-300 hover:bg-neutralSage/10">
@@ -347,7 +349,8 @@
                         <span class="text-[10px] font-sans tracking-widest uppercase font-semibold text-neutralRose">19:00 Hrs</span>
                         <h4 class="font-serifTitle text-lg text-neutralDark font-semibold mt-0.5">Recepción</h4>
                         <p class="font-serifBody text-base text-neutralDark/70 mt-1">
-                            Acceso y acomodo en El Campanario. Canapés, coctelería y música en vivo a cargo del grupo versátil.
+                            <!-- ACTUALIZADO: Referencia a Salón Quinta Victoria en lugar de El Campanario -->
+                            Acceso y acomodo en Salón Quinta Victoria. Canapés, coctelería y música en vivo a cargo del grupo versátil.
                         </p>
                     </div>
                 </div>
@@ -1223,8 +1226,9 @@
 
         function addToCalendar() {
             const title = encodeURIComponent("Boda de Estrella & Alejandro 🤍");
+            // ACTUALIZADO: Referencia a Salón Quinta Victoria
             const details = encodeURIComponent("Boda de Estrella Barajas Guzmán & Alejandro Esai Martínez Martínez. Ceremonia 17:00 Hrs. Recepción 19:00 Hrs.");
-            const location = encodeURIComponent("El Campanario, Morelia, Michoacán");
+            const location = encodeURIComponent("Salón Quinta Victoria, Morelia, Michoacán");
             window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261031T170000/20261101T020000&details=${details}&location=${location}`, '_blank');
         }
 
